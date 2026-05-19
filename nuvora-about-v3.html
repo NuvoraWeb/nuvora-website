@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About — Nuvora</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root{--teal:#1D9E75;--teal-l:#5DCAA5;--teal-d:#0F6E56;--forest:#04342C;--black:#0A0A0A;--white:#FFFFFF;--bg:#F8F6F1;--text:#0A0A0A;--text-m:rgba(10,10,10,.52);--text-s:rgba(10,10,10,.35);--border:rgba(10,10,10,.08);--border-m:rgba(10,10,10,.13);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;cursor:none;}
+#cur{width:8px;height:8px;background:var(--teal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:multiply;}
+#cur-ring{width:32px;height:32px;border:1px solid rgba(29,158,117,.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width .25s,height .25s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
+nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:24px;letter-spacing:-1px;text-decoration:none;}
+.logo span:first-child{color:var(--teal);}.logo span:last-child{color:var(--black);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-cta{background:var(--teal);color:#fff;padding:10px 24px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;transition:background .2s;}.nav-cta:hover{background:var(--teal-d);}
+.burger{width:44px;height:44px;border-radius:50%;background:transparent;border:1px solid var(--border-m);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:all .2s;position:relative;z-index:400;}
+.bl{width:18px;height:1.5px;background:var(--black);border-radius:2px;transition:all .35s cubic-bezier(.4,0,.2,1);transform-origin:center;}
+.burger.open .bl:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:#fff;}
+.burger.open .bl:nth-child(2){opacity:0;transform:scaleX(0);}
+.burger.open .bl:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:#fff;}
+.menu-ov{position:fixed;inset:0;z-index:350;background:var(--forest);display:flex;flex-direction:column;padding:120px 56px 56px;opacity:0;pointer-events:none;transition:opacity .4s ease;}
+.menu-ov.open{opacity:1;pointer-events:all;}
+.menu-links{list-style:none;display:flex;flex-direction:column;flex:1;}
+.menu-links li{overflow:hidden;}
+.menu-link{display:block;text-decoration:none;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(34px,6vw,72px);letter-spacing:-3px;line-height:1.15;color:rgba(255,255,255,.18);transition:color .25s;transform:translateY(110%);}
+.menu-ov.open .menu-link{transform:translateY(0);}
+.menu-link:hover{color:var(--teal-l);}.menu-link.active{color:#fff;}
+.menu-ov.open .menu-links li:nth-child(1) .menu-link{transition:transform .5s ease .04s,color .25s;}
+.menu-ov.open .menu-links li:nth-child(2) .menu-link{transition:transform .5s ease .09s,color .25s;}
+.menu-ov.open .menu-links li:nth-child(3) .menu-link{transition:transform .5s ease .14s,color .25s;}
+.menu-ov.open .menu-links li:nth-child(4) .menu-link{transition:transform .5s ease .19s,color .25s;}
+.menu-ov.open .menu-links li:nth-child(5) .menu-link{transition:transform .5s ease .24s,color .25s;}
+.menu-foot{display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:14px;}
+.menu-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.5px;}
+.menu-logo span:first-child{color:var(--teal-l);}.menu-logo span:last-child{color:rgba(255,255,255,.3);}
+.menu-info{font-size:13px;color:rgba(255,255,255,.3);font-weight:300;}
+.menu-info a{color:var(--teal-l);text-decoration:none;}
+.menu-cta-btn{background:var(--teal);color:#fff;padding:11px 26px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;}
+.wave{display:block;width:100%;overflow:hidden;line-height:0;}.wave svg{display:block;width:100%;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}.reveal.on{opacity:1;transform:translateY(0);}
+.section-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;display:block;}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:15px;transition:all .2s;border-radius:100px;padding:14px 32px;}
+.btn-primary{background:var(--teal);color:#fff;}.btn-primary:hover{background:var(--teal-d);}
+.btn-outline{border:1.5px solid var(--border-m);color:var(--text-m);}.btn-outline:hover{border-color:var(--teal);color:var(--teal);}
+.btn-white{background:#fff;color:var(--black);}.btn-white:hover{background:var(--bg);}
+.btn-ghost-l{border:1.5px solid rgba(255,255,255,.22);color:rgba(255,255,255,.6);}.btn-ghost-l:hover{border-color:#fff;color:#fff;}
+.arr{display:inline-block;transition:transform .2s;}.btn:hover .arr{transform:translateX(5px);}
+.inner{max-width:1200px;margin:0 auto;}
+.bc{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-s);margin-bottom:22px;}
+.bc a{color:var(--text-s);text-decoration:none;}.bc a:hover{color:var(--teal);}
+.bc span{color:rgba(10,10,10,.15);}
+/* Page hero */
+.ph{padding:150px 48px 0;position:relative;overflow:hidden;}
+.ph::before{content:'';position:absolute;width:500px;height:400px;background:radial-gradient(ellipse,rgba(29,158,117,.06) 0%,transparent 70%);bottom:-60px;left:-60px;pointer-events:none;}
+.ph-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding-bottom:80px;border-bottom:1px solid var(--border);}
+.ph-h{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(40px,6vw,80px);letter-spacing:-3px;line-height:.97;margin-top:12px;}
+.ph-h em{font-style:normal;color:var(--teal);}
+.ph-sub{font-size:18px;font-weight:300;color:var(--text-m);line-height:1.75;margin-top:18px;}
+.ph-btns{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;}
+.mq-card{background:rgba(29,158,117,.05);border:1.5px solid rgba(29,158,117,.18);border-radius:18px;padding:32px;}
+.mq-quote{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.5px;line-height:1.35;color:var(--black);margin-bottom:18px;}
+.mq-quote em{font-style:normal;color:var(--teal);}
+.mq-divider{width:44px;height:2px;background:var(--teal);border-radius:1px;margin:18px 0;}
+.mq-body{font-size:14px;color:var(--text-m);font-weight:300;line-height:1.75;}
+/* Sections */
+section{padding:100px 48px;}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;max-width:1200px;margin:0 auto;}
+.sh{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,48px);letter-spacing:-2px;line-height:1.06;margin-top:10px;margin-bottom:22px;}
+.sh em{font-style:normal;color:var(--teal);}
+.sbody{font-size:16px;font-weight:300;color:var(--text-m);line-height:1.82;margin-bottom:18px;}
+.tl{list-style:none;position:relative;padding-left:0;}
+.tl::before{content:'';position:absolute;left:19px;top:8px;bottom:0;width:1px;background:var(--border-m);}
+.tl-item{display:flex;gap:18px;margin-bottom:32px;position:relative;}
+.tl-dot{width:38px;height:38px;border-radius:50%;background:rgba(29,158,117,.07);border:1px solid rgba(29,158,117,.2);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:9px;color:var(--teal);flex-shrink:0;z-index:1;letter-spacing:-.3px;}
+.tl-year{font-size:10px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:4px;}
+.tl-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.3px;margin-bottom:5px;}
+.tl-body{font-size:13px;color:var(--text-m);font-weight:300;line-height:1.65;}
+.val-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:44px;}
+.val-card{border-radius:14px;padding:24px;border:1px solid var(--border);background:var(--white);transition:border-color .25s,background .25s;}
+.val-card:hover{border-color:rgba(29,158,117,.25);background:rgba(29,158,117,.02);}
+.val-ico{font-size:22px;margin-bottom:12px;}
+.val-title{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.3px;margin-bottom:7px;}
+.val-body{font-size:13px;color:var(--text-m);font-weight:300;line-height:1.65;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:44px;}
+.team-card{border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--bg);transition:border-color .25s,transform .3s;}
+.team-card:hover{border-color:rgba(29,158,117,.25);transform:translateY(-4px);}
+.team-av{height:160px;display:flex;align-items:center;justify-content:center;}
+.team-init{font-family:'Syne',sans-serif;font-weight:800;font-size:44px;opacity:.12;letter-spacing:-2px;color:var(--black);}
+.team-body{padding:16px;}
+.team-name{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:-.3px;margin-bottom:2px;}
+.team-role{font-size:11px;color:var(--teal);margin-bottom:6px;}
+.team-bio{font-size:12px;color:var(--text-m);font-weight:300;line-height:1.6;}
+.tools-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:44px;}
+.tool-card{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:18px;text-align:center;transition:border-color .2s;}
+.tool-card:hover{border-color:rgba(29,158,117,.22);}
+.tool-ico{font-size:22px;margin-bottom:7px;}
+.tool-name{font-size:13px;font-weight:500;margin-bottom:2px;}
+.tool-use{font-size:11px;color:var(--text-s);}
+.nums-section{background:var(--forest);padding:80px 48px;}
+.nums-inner{max-width:1200px;margin:0 auto;}
+.nums-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:44px;}
+.num-item{text-align:center;}
+.nv{font-family:'Syne',sans-serif;font-weight:800;font-size:48px;letter-spacing:-3px;color:var(--teal-l);}
+.nl{font-size:13px;color:rgba(255,255,255,.42);margin-top:5px;font-weight:300;}
+.cta-s{padding:100px 48px;background:var(--forest);text-align:center;position:relative;overflow:hidden;}
+.cta-s::before{content:'';position:absolute;width:700px;height:400px;background:radial-gradient(ellipse,rgba(29,158,117,.14) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-s h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(30px,5vw,64px);letter-spacing:-2.5px;line-height:.98;max-width:760px;margin:0 auto 16px;color:#fff;position:relative;}
+.cta-s h2 em{font-style:normal;color:var(--teal-l);}
+.cta-s p{font-size:16px;color:rgba(255,255,255,.42);font-weight:300;margin-bottom:36px;position:relative;}
+.cta-s .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;}
+footer{padding:38px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--white);}
+.ftlogo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-1px;}
+.ftlogo span:first-child{color:var(--teal);}.ftlogo span:last-child{color:rgba(10,10,10,.5);}
+.ftlinks{display:flex;gap:24px;}.ftlinks a{font-size:13px;color:var(--text-s);text-decoration:none;transition:color .2s;}.ftlinks a:hover{color:var(--teal);}
+.fttag{font-size:12px;color:var(--text-s);font-weight:300;}
+@media(max-width:900px){nav{padding:18px 24px;}.ph{padding:110px 24px 0;}.ph-grid{grid-template-columns:1fr;gap:36px;}.story-grid{grid-template-columns:1fr;gap:40px;}section{padding:72px 24px;}.val-grid{grid-template-columns:1fr 1fr;}.team-grid{grid-template-columns:1fr 1fr;}.tools-grid{grid-template-columns:1fr 1fr;}.nums-grid{grid-template-columns:1fr 1fr;}.nums-section,.cta-s{padding:72px 24px;}.menu-ov{padding:100px 28px 40px;}footer{flex-direction:column;gap:12px;text-align:center;}.ftlinks{flex-wrap:wrap;justify-content:center;}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-ring"></div>
+<div class="menu-ov" id="menuOv">
+  <ul class="menu-links">
+    <li><a href="nuvora-homepage-v3.html" class="menu-link">Home</a></li>
+    <li><a href="nuvora-services-v3.html" class="menu-link">Services</a></li>
+    <li><a href="nuvora-portfolio-v3.html" class="menu-link">Portfolio</a></li>
+    <li><a href="nuvora-about-v3.html" class="menu-link active">About</a></li>
+    <li><a href="nuvora-contact-v3.html" class="menu-link">Get started</a></li>
+  </ul>
+  <div class="menu-foot">
+    <div class="menu-logo"><span>nu</span><span>vora</span></div>
+    <div class="menu-info">hello@nuvora.co.za &nbsp;·&nbsp; <a href="https://wa.me/27000000000">WhatsApp us</a></div>
+    <a href="nuvora-contact-v3.html" class="menu-cta-btn">Start your project →</a>
+  </div>
+</div>
+<nav id="nav">
+  <a href="nuvora-homepage-v3.html" class="logo"><span>nu</span><span>vora</span></a>
+  <div class="nav-right">
+    <a href="nuvora-contact-v3.html" class="nav-cta">Get started</a>
+    <div class="burger" id="burger" onclick="toggleMenu()"><div class="bl"></div><div class="bl"></div><div class="bl"></div></div>
+  </div>
+</nav>
+
+<section class="ph">
+  <div class="inner">
+    <div class="bc"><a href="nuvora-homepage-v3.html">Home</a><span>/</span><span style="color:var(--text-m)">About</span></div>
+    <div class="ph-grid">
+      <div>
+        <span class="section-tag">Our story</span>
+        <h1 class="ph-h">We saw a gap.<br/>We <em>built</em><br/>into it.</h1>
+        <p class="ph-sub">Nuvora started with one observation — South Africa's best businesses were losing work to competitors with better websites, not better work. We built something to fix that.</p>
+        <div class="ph-btns">
+          <a href="nuvora-contact-v3.html" class="btn btn-primary">Work with us <span class="arr">→</span></a>
+          <a href="nuvora-portfolio-v3.html" class="btn btn-outline">See our work <span class="arr">→</span></a>
+        </div>
+      </div>
+      <div class="mq-card reveal">
+        <div class="mq-quote">"We exist to give South Africa's hardest working businesses the digital presence they <em>deserve.</em>"</div>
+        <div class="mq-divider"></div>
+        <div class="mq-body">We build fast, we build properly, and we build for results — not pretty pictures. Wedding venues, clothing brands, construction companies, restaurants — every business deserves to show up brilliantly online. We only win when you win.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,22 C360,44 720,0 1080,22 C1260,33 1380,11 1440,22 L1440,44 L0,44 Z" fill="var(--bg)"/></svg></div>
+
+<section style="background:var(--bg);">
+  <div class="story-grid">
+    <div class="reveal">
+      <span class="section-tag">How we got here</span>
+      <h2 class="sh">Built from<br/>frustration.<br/>Grown on <em>results.</em></h2>
+      <p class="sbody">Nuvora started when our founder visited a Johannesburg construction site and met a contractor doing R4 million in work a year — operating off a WhatsApp contact saved from a business card.</p>
+      <p class="sbody">He had no website. His Google listing had two reviews. His competitor — doing inferior work — had a slick site, 47 five-star reviews, and was booking jobs that should have been his.</p>
+      <p class="sbody">That conversation became Nuvora. But as we built, we realised the same problem existed everywhere — in wedding venues, clothing brands, restaurants, photography studios. Any business that does great work but shows up poorly online.</p>
+      <p class="sbody">So we opened the doors to every industry. Same technology. Same obsession with results. For everyone.</p>
+    </div>
+    <div class="reveal">
+      <ul class="tl">
+        <li class="tl-item"><div class="tl-dot">24</div><div><div class="tl-year">2024 — Founded</div><div class="tl-title">Nuvora launches in Johannesburg</div><div class="tl-body">First 5 clients onboarded across construction and trades. All live within 48 hours.</div></div></li>
+        <li class="tl-item"><div class="tl-dot">Q1</div><div><div class="tl-year">2025 Q1</div><div class="tl-title">AI chatbot and automation launched</div><div class="tl-body">We integrate AI chatbots and email automation into Growth and Dominance packages.</div></div></li>
+        <li class="tl-item"><div class="tl-dot">Q2</div><div><div class="tl-year">2025 Q2</div><div class="tl-title">Expansion to all industries</div><div class="tl-body">First wedding and fashion clients onboarded. The formula works across every sector.</div></div></li>
+        <li class="tl-item"><div class="tl-dot">Q3</div><div><div class="tl-year">2025 Q3</div><div class="tl-title">Higgsfield AI content integration</div><div class="tl-body">We partner with Higgsfield for cinematic AI video and image content — bringing Hollywood quality to SA businesses.</div></div></li>
+        <li class="tl-item"><div class="tl-dot">Now</div><div><div class="tl-year">Present</div><div class="tl-title">48+ clients across South Africa</div><div class="tl-body">Weddings, fashion, construction, hospitality, and growing. The same obsessive attention to detail for every client.</div></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--bg)"><svg viewBox="0 0 1440 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,14 C480,44 960,0 1440,30 L1440,44 L0,44 Z" fill="white"/></svg></div>
+
+<section>
+  <div class="inner">
+    <span class="section-tag reveal">What drives us</span>
+    <h2 class="sh reveal">Six things we<br/>never compromise on.</h2>
+    <div class="val-grid reveal">
+      <div class="val-card"><div class="val-ico">⚡</div><div class="val-title">Speed</div><div class="val-body">Every day without a great website is a day losing business. We move fast — 48 hours from sign-up to live is our standard, not our exception.</div></div>
+      <div class="val-card"><div class="val-ico">🎯</div><div class="val-title">Results, not aesthetics</div><div class="val-body">A beautiful website that doesn't generate leads is an expensive brochure. Everything we build is designed to convert visitors into paying clients.</div></div>
+      <div class="val-card"><div class="val-ico">🤝</div><div class="val-title">Radical honesty</div><div class="val-body">We tell you what package you actually need — not the most expensive one. If Presence is right for your business, that's what we'll recommend.</div></div>
+      <div class="val-card"><div class="val-ico">📊</div><div class="val-title">Measured everything</div><div class="val-body">We track leads, rankings, traffic, and conversions for every client. If something isn't working, we fix it. No hiding behind vanity metrics.</div></div>
+      <div class="val-card"><div class="val-ico">🇿🇦</div><div class="val-title">Built for South Africa</div><div class="val-body">We understand the SA market — WhatsApp-first culture, Paystack billing, and the specific needs of SA businesses. This isn't a generic product.</div></div>
+      <div class="val-card"><div class="val-ico">🔄</div><div class="val-title">Never done improving</div><div class="val-body">Your site gets better every month. New features, better copy, fresh AI content. We're a long-term partner, not a build-and-disappear agency.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,22 C360,44 720,0 1080,22 C1260,33 1380,11 1440,22 L1440,44 L0,44 Z" fill="var(--bg)"/></svg></div>
+
+<section style="background:var(--bg);">
+  <div class="inner">
+    <span class="section-tag reveal">The team</span>
+    <h2 class="sh reveal">Small team.<br/>Big output.</h2>
+    <div class="team-grid reveal">
+      <div class="team-card"><div class="team-av" style="background:linear-gradient(135deg,#e8f4f0,#d0ebe3);"><div class="team-init">KD</div></div><div class="team-body"><div class="team-name">Kagiso Dlamini</div><div class="team-role">Founder & Strategy</div><div class="team-bio">10 years in digital marketing before founding Nuvora. Obsessed with results, not aesthetics.</div></div></div>
+      <div class="team-card"><div class="team-av" style="background:linear-gradient(135deg,#f4f0e8,#ebe3d0);"><div class="team-init">RP</div></div><div class="team-body"><div class="team-name">Riaan Pretorius</div><div class="team-role">Lead Developer</div><div class="team-bio">Full-stack developer who previously built platforms for SA's top retail brands. Now building for everyone.</div></div></div>
+      <div class="team-card"><div class="team-av" style="background:linear-gradient(135deg,#e8eef4,#d0dce8);"><div class="team-init">NM</div></div><div class="team-body"><div class="team-name">Nomsa Mthembu</div><div class="team-role">Client Success</div><div class="team-bio">Makes sure every client gets results, every time. Your first call when you need anything done.</div></div></div>
+      <div class="team-card"><div class="team-av" style="background:linear-gradient(135deg,#f4e8f0,#e8d0e4);"><div class="team-init">LV</div></div><div class="team-body"><div class="team-name">Liezl van Wyk</div><div class="team-role">Design & Content</div><div class="team-bio">UI designer and AI content specialist. Turns business information into websites people remember.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--bg)"><svg viewBox="0 0 1440 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,14 C480,44 960,0 1440,30 L1440,44 L0,44 Z" fill="white"/></svg></div>
+
+<section>
+  <div class="inner">
+    <span class="section-tag reveal">What we build with</span>
+    <h2 class="sh reveal">Enterprise tools.<br/>SME pricing.</h2>
+    <div class="tools-grid reveal">
+      <div class="tool-card"><div class="tool-ico">⚡</div><div class="tool-name">Vercel</div><div class="tool-use">Hosting & deployment</div></div>
+      <div class="tool-card"><div class="tool-ico">🗄️</div><div class="tool-name">Supabase</div><div class="tool-use">Database & auth</div></div>
+      <div class="tool-card"><div class="tool-ico">🤖</div><div class="tool-name">Claude AI</div><div class="tool-use">Chatbot intelligence</div></div>
+      <div class="tool-card"><div class="tool-ico">🎬</div><div class="tool-name">Higgsfield AI</div><div class="tool-use">Video & image content</div></div>
+      <div class="tool-card"><div class="tool-ico">📧</div><div class="tool-name">Resend</div><div class="tool-use">Email automation</div></div>
+      <div class="tool-card"><div class="tool-ico">🔄</div><div class="tool-name">Make.com</div><div class="tool-use">Workflow automation</div></div>
+      <div class="tool-card"><div class="tool-ico">💳</div><div class="tool-name">Paystack</div><div class="tool-use">ZAR subscription billing</div></div>
+      <div class="tool-card"><div class="tool-ico">☁️</div><div class="tool-name">Cloudflare</div><div class="tool-use">DNS & security</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wave"><svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,60 720,0 1080,30 C1260,44 1380,14 1440,30 L1440,60 L0,60 Z" fill="#04342C"/></svg></div>
+
+<section class="nums-section">
+  <div class="nums-inner">
+    <span class="section-tag reveal" style="color:var(--teal-l);">By the numbers</span>
+    <div class="nums-grid reveal">
+      <div class="num-item"><div class="nv">48+</div><div class="nl">Clients across SA</div></div>
+      <div class="num-item"><div class="nv">48h</div><div class="nl">Average site launch time</div></div>
+      <div class="num-item"><div class="nv">4.9★</div><div class="nl">Avg client Google rating</div></div>
+      <div class="num-item"><div class="nv">3.2x</div><div class="nl">Average lead increase</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-s" style="padding-top:100px;">
+  <span class="section-tag reveal" style="color:var(--teal-l);display:inline-block;margin-bottom:14px;">Let's talk</span>
+  <h2 class="reveal">Think we're the<br/>right fit? <em>We do too.</em></h2>
+  <p class="reveal">No long onboarding. No jargon. Just results.</p>
+  <div class="btns reveal">
+    <a href="nuvora-contact-v3.html" class="btn btn-white" style="font-size:16px;padding:16px 42px">Get started <span class="arr">→</span></a>
+    <a href="nuvora-portfolio-v3.html" class="btn btn-ghost-l" style="font-size:15px">See our work <span class="arr">→</span></a>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--forest)"><svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 C240,40 480,0 720,20 C960,40 1200,0 1440,20 L1440,40 L0,40 Z" fill="white"/></svg></div>
+
+<footer>
+  <div class="ftlogo"><span>nu</span><span>vora</span></div>
+  <div class="ftlinks"><a href="nuvora-homepage-v3.html">Home</a><a href="nuvora-services-v3.html">Services</a><a href="nuvora-portfolio-v3.html">Portfolio</a><a href="nuvora-contact-v3.html">Get started</a></div>
+  <div class="fttag">We build. You grow.</div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0,open=false;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-4}px,${my-4}px)`;});
+(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.transform=`translate(${rx-16}px,${ry-16}px)`;requestAnimationFrame(a);})();
+document.querySelectorAll('a,button,.val-card,.team-card,.tool-card').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';});el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';});});
+function toggleMenu(){open=!open;document.getElementById('burger').classList.toggle('open',open);document.getElementById('menuOv').classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}
+document.querySelectorAll('.menu-link,.menu-cta-btn').forEach(l=>l.addEventListener('click',()=>{if(open)toggleMenu();}));
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);});
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');obs.unobserve(x.target);}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

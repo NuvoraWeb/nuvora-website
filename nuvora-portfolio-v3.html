@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio — Nuvora</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root{--teal:#1D9E75;--teal-l:#5DCAA5;--teal-d:#0F6E56;--forest:#04342C;--black:#0A0A0A;--white:#FFFFFF;--bg:#F8F6F1;--text:#0A0A0A;--text-m:rgba(10,10,10,.52);--text-s:rgba(10,10,10,.35);--border:rgba(10,10,10,.08);--border-m:rgba(10,10,10,.13);}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;cursor:none;}
+#cur{width:8px;height:8px;background:var(--teal);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:multiply;}
+#cur-ring{width:32px;height:32px;border:1px solid rgba(29,158,117,.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:width .25s,height .25s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
+nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.06);}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:24px;letter-spacing:-1px;text-decoration:none;}
+.logo span:first-child{color:var(--teal);}.logo span:last-child{color:var(--black);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.nav-cta{background:var(--teal);color:#fff;padding:10px 24px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;transition:background .2s;}.nav-cta:hover{background:var(--teal-d);}
+.burger{width:44px;height:44px;border-radius:50%;background:transparent;border:1px solid var(--border-m);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;transition:all .2s;position:relative;z-index:400;}
+.bl{width:18px;height:1.5px;background:var(--black);border-radius:2px;transition:all .35s cubic-bezier(.4,0,.2,1);transform-origin:center;}
+.burger.open .bl:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:#fff;}
+.burger.open .bl:nth-child(2){opacity:0;transform:scaleX(0);}
+.burger.open .bl:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:#fff;}
+.menu-ov{position:fixed;inset:0;z-index:350;background:var(--forest);display:flex;flex-direction:column;padding:120px 56px 56px;opacity:0;pointer-events:none;transition:opacity .4s ease;}
+.menu-ov.open{opacity:1;pointer-events:all;}
+.menu-links{list-style:none;display:flex;flex-direction:column;flex:1;}
+.menu-links li{overflow:hidden;}
+.menu-link{display:block;text-decoration:none;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(34px,6vw,72px);letter-spacing:-3px;line-height:1.15;color:rgba(255,255,255,.18);transition:color .25s;transform:translateY(110%);}
+.menu-ov.open .menu-link{transform:translateY(0);}
+.menu-link:hover{color:var(--teal-l);}.menu-link.active{color:#fff;}
+.menu-ov.open .menu-links li:nth-child(1) .menu-link{transition:transform .5s ease .04s,color .25s;}
+.menu-ov.open .menu-links li:nth-child(2) .menu-link{transition:transform .5s ease .09s,color .25s;}
+.menu-ov.open .menu-links li:nth-child(3) .menu-link{transition:transform .5s ease .14s,color .25s;}
+.menu-ov.open .menu-links li:nth-child(4) .menu-link{transition:transform .5s ease .19s,color .25s;}
+.menu-ov.open .menu-links li:nth-child(5) .menu-link{transition:transform .5s ease .24s,color .25s;}
+.menu-foot{display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:14px;}
+.menu-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.5px;}
+.menu-logo span:first-child{color:var(--teal-l);}.menu-logo span:last-child{color:rgba(255,255,255,.3);}
+.menu-info{font-size:13px;color:rgba(255,255,255,.3);font-weight:300;}
+.menu-info a{color:var(--teal-l);text-decoration:none;}
+.menu-cta-btn{background:var(--teal);color:#fff;padding:11px 26px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none;}
+.wave{display:block;width:100%;overflow:hidden;line-height:0;}.wave svg{display:block;width:100%;}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}.reveal.on{opacity:1;transform:translateY(0);}
+.section-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;display:block;}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:15px;transition:all .2s;border-radius:100px;padding:14px 32px;}
+.btn-primary{background:var(--teal);color:#fff;}.btn-primary:hover{background:var(--teal-d);}
+.btn-outline{border:1.5px solid var(--border-m);color:var(--text-m);}.btn-outline:hover{border-color:var(--teal);color:var(--teal);}
+.btn-white{background:#fff;color:var(--black);}.btn-white:hover{background:var(--bg);}
+.btn-ghost-l{border:1.5px solid rgba(255,255,255,.22);color:rgba(255,255,255,.6);}.btn-ghost-l:hover{border-color:#fff;color:#fff;}
+.arr{display:inline-block;transition:transform .2s;}.btn:hover .arr{transform:translateX(5px);}
+.bc{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-s);margin-bottom:22px;}
+.bc a{color:var(--text-s);text-decoration:none;}.bc a:hover{color:var(--teal);}
+.bc span{color:rgba(10,10,10,.15);}
+.ph{padding:150px 48px 72px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;max-width:none;}
+.ph::before{content:'';position:absolute;width:500px;height:400px;background:radial-gradient(ellipse,rgba(29,158,117,.07) 0%,transparent 70%);top:-60px;right:-80px;pointer-events:none;}
+.ph-inner{max-width:1200px;margin:0 auto;}
+.ph-h{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(44px,6vw,82px);letter-spacing:-3px;line-height:.97;max-width:700px;margin-top:12px;}
+.ph-h em{font-style:normal;color:var(--teal);}
+.ph-sub{font-size:18px;font-weight:300;color:var(--text-m);max-width:480px;line-height:1.75;margin-top:18px;}
+.filters{background:var(--bg);border-bottom:1px solid var(--border);padding:0 48px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;}
+.filters::-webkit-scrollbar{display:none;}
+.filter-btn{white-space:nowrap;padding:16px 18px;font-size:13px;color:var(--text-s);border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;transition:all .2s;margin-bottom:-1px;}
+.filter-btn:hover{color:var(--teal);}
+.filter-btn.active{color:var(--teal);border-bottom-color:var(--teal);font-weight:500;}
+.stats-bar{padding:44px 48px;border-bottom:1px solid var(--border);display:flex;gap:0;background:var(--white);}
+.stat-item{flex:1;padding:0 36px;border-right:1px solid var(--border);}
+.stat-item:first-child{padding-left:0;}.stat-item:last-child{border-right:none;}
+.stat-n{font-family:'Syne',sans-serif;font-weight:800;font-size:36px;letter-spacing:-2px;color:var(--black);}
+.stat-n em{font-style:normal;color:var(--teal);}
+.stat-l{font-size:12px;color:var(--text-s);margin-top:3px;}
+.portfolio{padding:64px 48px 100px;background:var(--white);}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1400px;margin:0 auto;}
+.pcard{border-radius:18px;overflow:hidden;border:1px solid var(--border);background:var(--bg);transition:transform .35s ease,border-color .25s,box-shadow .3s;cursor:pointer;position:relative;}
+.pcard:hover{transform:translateY(-6px);border-color:rgba(29,158,117,.3);box-shadow:0 12px 48px rgba(0,0,0,.08);}
+.pcard.large{grid-column:span 2;}
+.pimg{height:230px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.pcard.large .pimg{height:300px;}
+.pimg-bg{position:absolute;inset:0;transition:transform .5s ease;}
+.pcard:hover .pimg-bg{transform:scale(1.06);}
+.poverlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(10,10,10,.55) 100%);}
+.pind-tag{position:absolute;top:14px;left:14px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;background:rgba(255,255,255,.9);color:var(--text);padding:4px 11px;border-radius:100px;backdrop-filter:blur(8px);}
+.ppkg-tag{position:absolute;top:14px;right:14px;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:4px 11px;border-radius:100px;backdrop-filter:blur(8px);}
+.ppkg-P{background:rgba(255,255,255,.8);color:var(--text-m);}
+.ppkg-G{background:rgba(29,158,117,.9);color:#fff;}
+.ppkg-D{background:rgba(10,10,10,.8);color:#fff;}
+.pbody{padding:20px 22px;}
+.pclient{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;letter-spacing:-.3px;margin-bottom:4px;}
+.pdesc{font-size:13px;color:var(--text-m);font-weight:300;line-height:1.55;margin-bottom:12px;}
+.pmetrics{display:flex;gap:16px;}
+.pmv{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--teal);}
+.pml{font-size:10px;color:var(--text-s);margin-top:1px;}
+.parrow{position:absolute;bottom:20px;right:20px;width:30px;height:30px;border-radius:50%;background:rgba(29,158,117,.1);border:1px solid rgba(29,158,117,.2);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--teal);transition:all .2s;}
+.pcard:hover .parrow{background:var(--teal);color:#fff;transform:rotate(45deg);}
+.testimonials{padding:0 48px 80px;background:var(--bg);}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:40px;}
+.tcard{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:24px;}
+.tstars{color:var(--teal);font-size:13px;letter-spacing:2px;margin-bottom:10px;}
+.tbody{font-size:14px;color:var(--text-m);font-weight:300;line-height:1.75;margin-bottom:14px;}
+.tauth{display:flex;align-items:center;gap:9px;}
+.tav{width:32px;height:32px;border-radius:50%;background:rgba(29,158,117,.08);border:1.5px solid rgba(29,158,117,.18);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;color:var(--teal);}
+.tname{font-size:13px;font-weight:500;}.trole{font-size:11px;color:var(--text-s);margin-top:1px;}
+.cta-s{padding:100px 48px;background:var(--forest);text-align:center;position:relative;overflow:hidden;}
+.cta-s::before{content:'';position:absolute;width:700px;height:400px;background:radial-gradient(ellipse,rgba(29,158,117,.14) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.cta-s h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(30px,5vw,64px);letter-spacing:-2.5px;line-height:.98;max-width:760px;margin:0 auto 16px;color:#fff;position:relative;}
+.cta-s h2 em{font-style:normal;color:var(--teal-l);}
+.cta-s p{font-size:16px;color:rgba(255,255,255,.42);font-weight:300;margin-bottom:36px;position:relative;}
+.cta-s .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;}
+footer{padding:38px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--white);}
+.ftlogo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-1px;}
+.ftlogo span:first-child{color:var(--teal);}.ftlogo span:last-child{color:rgba(10,10,10,.5);}
+.ftlinks{display:flex;gap:24px;}
+.ftlinks a{font-size:13px;color:var(--text-s);text-decoration:none;transition:color .2s;}.ftlinks a:hover{color:var(--teal);}
+.fttag{font-size:12px;color:var(--text-s);font-weight:300;}
+@media(max-width:900px){nav{padding:18px 24px;}.ph{padding:110px 24px 60px;}.portfolio,.testimonials,.cta-s{padding:60px 24px;}.filters,.stats-bar{padding:0 24px;}.stats-bar{flex-wrap:wrap;gap:20px;padding:28px 24px;}.stat-item{flex:0 0 45%;border-right:none;padding:0;}.pgrid{grid-template-columns:1fr;}.pcard.large{grid-column:span 1;}.tgrid{grid-template-columns:1fr;}.menu-ov{padding:100px 28px 40px;}footer{flex-direction:column;gap:12px;text-align:center;}.ftlinks{flex-wrap:wrap;justify-content:center;}}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-ring"></div>
+<div class="menu-ov" id="menuOv">
+  <ul class="menu-links">
+    <li><a href="nuvora-homepage-v3.html" class="menu-link">Home</a></li>
+    <li><a href="nuvora-services-v3.html" class="menu-link">Services</a></li>
+    <li><a href="nuvora-portfolio-v3.html" class="menu-link active">Portfolio</a></li>
+    <li><a href="nuvora-about-v3.html" class="menu-link">About</a></li>
+    <li><a href="nuvora-contact-v3.html" class="menu-link">Get started</a></li>
+  </ul>
+  <div class="menu-foot">
+    <div class="menu-logo"><span>nu</span><span>vora</span></div>
+    <div class="menu-info">hello@nuvora.co.za &nbsp;·&nbsp; <a href="https://wa.me/27000000000">WhatsApp us</a></div>
+    <a href="nuvora-contact-v3.html" class="menu-cta-btn">Start your project →</a>
+  </div>
+</div>
+<nav id="nav">
+  <a href="nuvora-homepage-v3.html" class="logo"><span>nu</span><span>vora</span></a>
+  <div class="nav-right">
+    <a href="nuvora-contact-v3.html" class="nav-cta">Get started</a>
+    <div class="burger" id="burger" onclick="toggleMenu()"><div class="bl"></div><div class="bl"></div><div class="bl"></div></div>
+  </div>
+</nav>
+
+<section class="ph">
+  <div class="ph-inner">
+    <div class="bc"><a href="nuvora-homepage-v3.html">Home</a><span>/</span><span style="color:var(--text-m)">Portfolio</span></div>
+    <span class="section-tag">Our work</span>
+    <h1 class="ph-h">Real businesses.<br/><em>Real results.</em></h1>
+    <p class="ph-sub">Every site we build is custom. Every result is measured. Here's what happens when businesses stop settling for a bad digital presence.</p>
+  </div>
+</section>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filterCards('all',this)">All industries</button>
+  <button class="filter-btn" onclick="filterCards('weddings',this)">Weddings & Events</button>
+  <button class="filter-btn" onclick="filterCards('fashion',this)">Fashion & Clothing</button>
+  <button class="filter-btn" onclick="filterCards('construction',this)">Construction</button>
+  <button class="filter-btn" onclick="filterCards('hospitality',this)">Hospitality</button>
+  <button class="filter-btn" onclick="filterCards('other',this)">Other</button>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-n">48<em>+</em></div><div class="stat-l">Projects delivered</div></div>
+  <div class="stat-item"><div class="stat-n">3.2<em>x</em></div><div class="stat-l">Average lead increase</div></div>
+  <div class="stat-item"><div class="stat-n">4.9<em>★</em></div><div class="stat-l">Average Google rating</div></div>
+  <div class="stat-item"><div class="stat-n">48<em>hrs</em></div><div class="stat-l">Average launch time</div></div>
+</div>
+
+<section class="portfolio">
+  <div class="pgrid" id="pgrid">
+    <div class="pcard large reveal" data-cat="weddings">
+      <div class="pimg">
+        <div class="pimg-bg" style="width:100%;height:100%;background:linear-gradient(135deg,#1a0a14 0%,#3d1428 50%,#1a0a14 100%);display:flex;align-items:center;justify-content:center;"><div style="font-size:80px;opacity:.12;">💍</div></div>
+        <div class="poverlay"></div>
+        <div class="pind-tag">Weddings & Events</div>
+        <div class="ppkg-tag ppkg-D">Dominance</div>
+      </div>
+      <div class="pbody">
+        <div class="pclient">Fleur Events & Weddings</div>
+        <div class="pdesc">Full wedding agency website with inquiry chatbot, automated booking sequences, AI-generated venue visuals, and Google review management. Enquiries doubled in 6 weeks.</div>
+        <div class="pmetrics">
+          <div><div class="pmv">+210%</div><div class="pml">Enquiry increase</div></div>
+          <div><div class="pmv">5.0★</div><div class="pml">Google rating</div></div>
+          <div><div class="pmv">48hrs</div><div class="pml">Launch time</div></div>
+        </div>
+      </div>
+      <div class="parrow">↗</div>
+    </div>
+    <div class="pcard reveal" data-cat="fashion">
+      <div class="pimg">
+        <div class="pimg-bg" style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a14 0%,#1a1a2e 50%,#0a0a14 100%);display:flex;align-items:center;justify-content:center;"><div style="font-size:60px;opacity:.14;">👗</div></div>
+        <div class="poverlay"></div>
+        <div class="pind-tag">Fashion & Clothing</div>
+        <div class="ppkg-tag ppkg-G">Growth</div>
+      </div>
+      <div class="pbody">
+        <div class="pclient">Ndalo Clothing</div>
+        <div class="pdesc">Streetwear brand e-commerce site with AI-generated lookbook content and automated email flows. Sales up 60%.</div>
+        <div class="pmetrics">
+          <div><div class="pmv">+60%</div><div class="pml">Sales increase</div></div>
+          <div><div class="pmv">4.8★</div><div class="pml">Google</div></div>
+        </div>
+      </div>
+      <div class="parrow">↗</div>
+    </div>
+    <div class="pcard reveal" data-cat="construction">
+      <div class="pimg">
+        <div class="pimg-bg" style="width:100%;height:100%;background:linear-gradient(135deg,#0a1a10 0%,#1a3020 50%,#0a1a10 100%);display:flex;align-items:center;justify-content:center;"><div style="font-size:60px;opacity:.12;">🏗️</div></div>
+        <div class="poverlay"></div>
+        <div class="pind-tag">Construction</div>
+        <div class="ppkg-tag ppkg-D">Dominance</div>
+      </div>
+      <div class="pbody">
+        <div class="pclient">Steelcore Construction</div>
+        <div class="pdesc">Full lead system, chatbot, review management, and monthly AI video content. Leads up 340%.</div>
+        <div class="pmetrics">
+          <div><div class="pmv">+340%</div><div class="pml">Leads</div></div>
+          <div><div class="pmv">4.9★</div><div class="pml">Google</div></div>
+        </div>
+      </div>
+      <div class="parrow">↗</div>
+    </div>
+    <div class="pcard large reveal" data-cat="hospitality">
+      <div class="pimg">
+        <div class="pimg-bg" style="width:100%;height:100%;background:linear-gradient(135deg,#1a0e00 0%,#3d2200 50%,#1a0e00 100%);display:flex;align-items:center;justify-content:center;"><div style="font-size:80px;opacity:.13;">🍽️</div></div>
+        <div class="poverlay"></div>
+        <div class="pind-tag">Hospitality</div>
+        <div class="ppkg-tag ppkg-G">Growth</div>
+      </div>
+      <div class="pbody">
+        <div class="pclient">The Ember Restaurant Group</div>
+        <div class="pdesc">Three-restaurant group website with online bookings, menu showcase, AI-generated food photography, and a loyalty email automation. Average booking value increased by R420 per table through better upselling on the site.</div>
+        <div class="pmetrics">
+          <div><div class="pmv">+280%</div><div class="pml">Online bookings</div></div>
+          <div><div class="pmv">4.8★</div><div class="pml">Google</div></div>
+          <div><div class="pmv">+R420</div><div class="pml">Avg booking value</div></div>
+        </div>
+      </div>
+      <div class="parrow">↗</div>
+    </div>
+    <div class="pcard reveal" data-cat="fashion">
+      <div class="pimg">
+        <div class="pimg-bg" style="width:100%;height:100%;background:linear-gradient(135deg,#14001a 0%,#280030 50%,#14001a 100%);display:flex;align-items:center;justify-content:center;"><div style="font-size:60px;opacity:.12;">✨</div></div>
+        <div class="poverlay"></div>
+        <div class="pind-tag">Fashion & Clothing</div>
+        <div class="ppkg-tag ppkg-D">Dominance</div>
+      </div>
+      <div class="pbody">
+        <div class="pclient">Auric Luxury Brand</div>
+        <div class="pdesc">Luxury fashion e-commerce and lookbook site with cinematic AI-generated content. Premium aesthetic, premium results.</div>
+        <div class="pmetrics">
+          <div><div class="pmv">+190%</div><div class="pml">Online revenue</div></div>
+          <div><div class="pmv">5.0★</div><div class="pml">Google</div></div>
+        </div>
+      </div>
+      <div class="parrow">↗</div>
+    </div>
+    <div class="pcard reveal" data-cat="other">
+      <div class="pimg">
+        <div class="pimg-bg" style="width:100%;height:100%;background:linear-gradient(135deg,#001018 0%,#002030 50%,#001018 100%);display:flex;align-items:center;justify-content:center;"><div style="font-size:60px;opacity:.12;">📸</div></div>
+        <div class="poverlay"></div>
+        <div class="pind-tag">Photography</div>
+        <div class="ppkg-tag ppkg-G">Growth</div>
+      </div>
+      <div class="pbody">
+        <div class="pclient">Lens & Light Photography</div>
+        <div class="pdesc">Wedding and portrait photographer portfolio site with automated booking flow and lead capture.</div>
+        <div class="pmetrics">
+          <div><div class="pmv">+175%</div><div class="pml">Enquiries</div></div>
+          <div><div class="pmv">4.9★</div><div class="pml">Google</div></div>
+        </div>
+      </div>
+      <div class="parrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--white)"><svg viewBox="0 0 1440 44" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,22 C360,44 720,0 1080,22 C1260,33 1380,11 1440,22 L1440,44 L0,44 Z" fill="var(--bg)"/></svg></div>
+
+<section class="testimonials" style="padding-top:60px;">
+  <span class="section-tag reveal">What clients say</span>
+  <div class="tgrid reveal">
+    <div class="tcard"><div class="tstars">★★★★★</div><p class="tbody">"Our wedding enquiries doubled within 6 weeks. The site looks exactly like our brand — elegant, warm, and professional. Worth every rand."</p><div class="tauth"><div class="tav">SK</div><div><div class="tname">Sandra Kruger</div><div class="trole">Owner, Fleur Events & Weddings</div></div></div></div>
+    <div class="tcard"><div class="tstars">★★★★★</div><p class="tbody">"As a clothing brand we needed something premium. Nuvora delivered a site our customers genuinely compliment us on. Sales are up 60% in three months."</p><div class="tauth"><div class="tav">LP</div><div><div class="tname">Lebo Phiri</div><div class="trole">Founder, Ndalo Clothing</div></div></div></div>
+    <div class="tcard"><div class="tstars">★★★★★</div><p class="tbody">"I was sceptical — I'd been burned before. Nuvora had our site live in 48 hours and it looked better than anything I'd seen in our industry."</p><div class="tauth"><div class="tav">TM</div><div><div class="tname">Thabo Molefe</div><div class="trole">Director, Steelcore Construction</div></div></div></div>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--bg)"><svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,30 C360,60 720,0 1080,30 C1260,44 1380,14 1440,30 L1440,60 L0,60 Z" fill="#04342C"/></svg></div>
+
+<section class="cta-s">
+  <span class="section-tag reveal" style="color:var(--teal-l);display:inline-block;margin-bottom:14px;">Your turn</span>
+  <h2 class="reveal">Ready to be our<br/>next <em>success story?</em></h2>
+  <p class="reveal">Join 48+ businesses that chose to show up better.</p>
+  <div class="btns reveal">
+    <a href="nuvora-contact-v3.html" class="btn btn-white" style="font-size:16px;padding:16px 42px">Start today <span class="arr">→</span></a>
+    <a href="nuvora-services-v3.html" class="btn btn-ghost-l" style="font-size:15px">View services <span class="arr">→</span></a>
+  </div>
+</section>
+
+<div class="wave" style="background:var(--forest)"><svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 C240,40 480,0 720,20 C960,40 1200,0 1440,20 L1440,40 L0,40 Z" fill="white"/></svg></div>
+
+<footer>
+  <div class="ftlogo"><span>nu</span><span>vora</span></div>
+  <div class="ftlinks"><a href="nuvora-homepage-v3.html">Home</a><a href="nuvora-services-v3.html">Services</a><a href="nuvora-about-v3.html">About</a><a href="nuvora-contact-v3.html">Get started</a></div>
+  <div class="fttag">We build. You grow.</div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0,open=false;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-4}px,${my-4}px)`;});
+(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.transform=`translate(${rx-16}px,${ry-16}px)`;requestAnimationFrame(a);})();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';});el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';});});
+function toggleMenu(){open=!open;document.getElementById('burger').classList.toggle('open',open);document.getElementById('menuOv').classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}
+document.querySelectorAll('.menu-link,.menu-cta-btn').forEach(l=>l.addEventListener('click',()=>{if(open)toggleMenu();}));
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>20);});
+function filterCards(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pcard').forEach(card=>{
+    const show=cat==='all'||card.dataset.cat===cat;
+    card.style.transition='opacity .3s,transform .3s';
+    if(show){card.style.opacity='1';card.style.display='';}
+    else{card.style.opacity='0';setTimeout(()=>card.style.display='none',300);}
+  });
+}
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('on');obs.unobserve(x.target);}}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
