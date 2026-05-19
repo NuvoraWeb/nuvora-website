@@ -1,9 +1,9 @@
 {
-  "routes": [
-    { "src": "/", "dest": "/nuvora-homepage-v3.html" },
-    { "src": "/services", "dest": "/nuvora-services-v3.html" },
-    { "src": "/portfolio", "dest": "/nuvora-portfolio-v3.html" },
-    { "src": "/about", "dest": "/nuvora-about-v3.html" },
-    { "src": "/contact", "dest": "/nuvora-contact-v3.html" }
+  "rewrites": [
+    { "source": "/", "destination": "/nuvora-homepage-v3.html" },
+    { "source": "/services", "destination": "/nuvora-services-v3.html" },
+    { "source": "/portfolio", "destination": "/nuvora-portfolio-v3.html" },
+    { "source": "/about", "destination": "/nuvora-about-v3.html" },
+    { "source": "/contact", "destination": "/nuvora-contact-v3.html" }
   ]
 }
