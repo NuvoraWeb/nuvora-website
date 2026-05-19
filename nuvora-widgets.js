@@ -139,8 +139,44 @@ const NUVORA_CONFIG = {
       history.push({ role: 'assistant', content: reply });
       nvBotMsg(reply);
 
-      // Detect if AI is collecting lead info
-      if (reply.toLowerCase().includes("what's your name") || reply.toLowerCase().includes("few quick details")) {
+      // Smart lead extraction — try to extract from the full conversation history
+      // whenever the AI confirms it has the details (works for one-shot and multi-step)
+      const confirmPhrases = ["i've got", "i have your", "got everything", "got all your", "got your details",
+        "sending this to", "team will be in touch", "get back to you within", "i'll pass"];
+      const replyLower = reply.toLowerCase();
+      const isConfirming = confirmPhrases.some(p => replyLower.includes(p));
+
+      if (isConfirming && !leadData.saved) {
+        // Extract from the full conversation text
+        const fullConvo = history.map(m => m.content).join(' ');
+
+        // Email regex
+        const emailMatch = fullConvo.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/);
+
+        // Try to extract name — look for "my name is X" or "name is X"
+        const nameMatch = fullConvo.match(/(?:my name is|i(?:'m| am)|name(?:'s| is))\s+([A-Za-z]+(?:\s+[A-Za-z]+)?)/i);
+
+        // Try to extract business — look for "company is/called X" or "business is X"
+        const bizMatch = fullConvo.match(/(?:company(?:\s+is|\s+called)?|business(?:\s+is|\s+called)?|called)\s+([A-Za-z0-9\s&'.\-]+?)(?:\s*,|\s*\.|$)/i);
+
+        if (emailMatch) {
+          leadData.email = emailMatch[0];
+          leadData.name = nameMatch ? nameMatch[1].trim() : '';
+          leadData.business = bizMatch ? bizMatch[1].trim() : '';
+          leadData.saved = true;
+
+          try {
+            await fetch(NUVORA_CONFIG.LEAD_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ...leadData, source: 'chatbot' }),
+            });
+          } catch(e) { console.error('Lead save error:', e); }
+        }
+      }
+
+      // Fallback: step-by-step collection trigger
+      if (replyLower.includes("what's your name") || replyLower.includes("few quick details") || replyLower.includes("your name, email")) {
         leadCollecting = true;
         leadStep = 1;
       }
@@ -151,12 +187,13 @@ const NUVORA_CONFIG = {
   };
 
   async function handleLeadStep(text) {
-    if (leadStep === 1) { leadData.name = text; leadStep = 2; nvBotMsg("Great, " + text.split(' ')[0] + "! What's your email address?"); return; }
+    if (leadStep === 1) { leadData.name = text; leadStep = 2; nvBotMsg("Got it! What's your email address?"); return; }
     if (leadStep === 2) { leadData.email = text; leadStep = 3; nvBotMsg("And your business name?"); return; }
     if (leadStep === 3) {
       leadData.business = text;
       leadCollecting = false;
-      nvBotMsg("Perfect — I've got everything I need. Someone from the Nuvora team will be in touch within 24 hours!");
+      leadData.saved = true;
+      nvBotMsg("Perfect — someone from Nuvora will be in touch within 24 hours!");
       try {
         await fetch(NUVORA_CONFIG.LEAD_ENDPOINT, {
           method: 'POST',
