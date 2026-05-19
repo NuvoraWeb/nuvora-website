@@ -1,0 +1,9 @@
+{
+  "routes": [
+    { "src": "/", "dest": "/nuvora-homepage-v3.html" },
+    { "src": "/services", "dest": "/nuvora-services-v3.html" },
+    { "src": "/portfolio", "dest": "/nuvora-portfolio-v3.html" },
+    { "src": "/about", "dest": "/nuvora-about-v3.html" },
+    { "src": "/contact", "dest": "/nuvora-contact-v3.html" }
+  ]
+}
