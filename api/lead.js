@@ -1,4 +1,4 @@
-// api/lead.js Ã¢ÂÂ Vercel serverless function
+// api/lead.js ÃÂ¢ÃÂÃÂ Vercel serverless function
 // Saves lead to Supabase, triggers Make.com webhook, and sends 5-email nurture sequence via Resend
 
 export default async function handler(req, res) {
@@ -82,12 +82,12 @@ export default async function handler(req, res) {
               <table style="width:100%;border-collapse:collapse;font-size:14px;">
                 <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;width:120px;">Name</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${name}</td></tr>
                 <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Email</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${email}</td></tr>
-                <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Phone</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${phone || '—'}</td></tr>
-                <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Business</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${business || '—'}</td></tr>
-                <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Industry</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${industry || '—'}</td></tr>
-                <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Package</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${pkg || '—'}</td></tr>
+                <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Phone</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${phone || 'â'}</td></tr>
+                <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Business</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${business || 'â'}</td></tr>
+                <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Industry</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${industry || 'â'}</td></tr>
+                <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Package</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${pkg || 'â'}</td></tr>
                 <tr style="border-bottom:1px solid #eee;"><td style="padding:10px 0;color:#999;">Source</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${source || 'website'}</td></tr>
-                <tr><td style="padding:10px 0;color:#999;">Message</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${message || '—'}</td></tr>
+                <tr><td style="padding:10px 0;color:#999;">Message</td><td style="padding:10px 0;color:#0A0A0A;font-weight:600;">${message || 'â'}</td></tr>
               </table>
               <p style="color:#999;font-size:12px;margin-top:24px;">Received ${new Date().toLocaleString('en-ZA', {timeZone:'Africa/Johannesburg'})}</p>
             </div>
@@ -119,7 +119,8 @@ export default async function handler(req, res) {
               <li>If you would like to skip the wait, you can book a free 30-minute discovery call directly</li>
             </ul>
             <a href="https://calendly.com/nuvoramain/30min" style="display:inline-block;background:#1A9B72;color:#fff;padding:12px 24px;border-radius:24px;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:24px;">Book a free discovery call</a>
-            <p style="color:#999;font-size:12px;line-height:1.6;">Nuvora ÃÂ· AI Website Studio ÃÂ· South Africa<br>info@nuvoraweb.co.za ÃÂ· nuvoraweb.co.za</p>
+            <p style="color:#999;font-size:12px;line-height:1.6;">Nuvora ÃÂÃÂ· AI Website Studio ÃÂÃÂ· South Africa<br>info@nuvoraweb.co.za ÃÂÃÂ· nuvoraweb.co.za</p>
+              <p style="color:#bbb;font-size:11px;margin-top:12px;border-top:1px solid #f0f0f0;padding-top:10px;">You received this because you enquired via nuvoraweb.co.za. <a href="mailto:info@nuvoraweb.co.za?subject=Unsubscribe&body=Please remove me from further emails." style="color:#1A9B72;">Unsubscribe</a></p>
           </div>
         `
       },
@@ -130,36 +131,38 @@ export default async function handler(req, res) {
           <div style="font-family:-apple-system,Arial,sans-serif;max-width:580px;margin:0 auto;padding:32px 24px;background:#fff;">
             <div style="margin-bottom:24px;"><span style="font-weight:700;font-size:18px;color:#062B23;">nu</span><span style="font-weight:700;font-size:18px;color:#0A0A0A;">vora</span></div>
             <h2 style="font-weight:700;font-size:22px;letter-spacing:-0.5px;color:#0A0A0A;margin-bottom:12px;">Hey ${firstName}, here is something worth knowing.</h2>
-            <p style="color:#666;line-height:1.7;margin-bottom:16px;">Most South African business websites share the same problem Ã¢ÂÂ they are beautiful brochures that do absolutely nothing when no one is looking at them.</p>
+            <p style="color:#666;line-height:1.7;margin-bottom:16px;">Most South African business websites share the same problem ÃÂ¢ÃÂÃÂ they are beautiful brochures that do absolutely nothing when no one is looking at them.</p>
             <p style="color:#666;line-height:1.7;margin-bottom:16px;">No lead capture. No automated follow-up. No way to book a call at 11pm when a prospect is ready to buy.</p>
             <p style="color:#666;line-height:1.7;margin-bottom:16px;">The businesses growing fastest right now have one thing in common: their websites work while they sleep.</p>
             <a href="https://nuvoraweb.co.za/nuvora-blog-2.html" style="display:inline-block;background:#062B23;color:#fff;padding:12px 24px;border-radius:24px;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:24px;">Read: How to turn your site into a 24/7 lead machine</a>
             <p style="color:#666;line-height:1.7;margin-bottom:24px;">If you would like to see exactly what this looks like for a business like yours, book a free 30-minute call and we will show you.</p>
             <a href="https://calendly.com/nuvoramain/30min" style="display:inline-block;background:#1A9B72;color:#fff;padding:12px 24px;border-radius:24px;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:24px;">Book a free call</a>
-            <p style="color:#999;font-size:12px;line-height:1.6;">Nuvora ÃÂ· info@nuvoraweb.co.za ÃÂ· <a href="https://nuvoraweb.co.za" style="color:#1A9B72;">nuvoraweb.co.za</a></p>
+            <p style="color:#999;font-size:12px;line-height:1.6;">Nuvora ÃÂÃÂ· info@nuvoraweb.co.za ÃÂÃÂ· <a href="https://nuvoraweb.co.za" style="color:#1A9B72;">nuvoraweb.co.za</a></p>
+              <p style="color:#bbb;font-size:11px;margin-top:12px;border-top:1px solid #f0f0f0;padding-top:10px;">You received this because you enquired via nuvoraweb.co.za. <a href="mailto:info@nuvoraweb.co.za?subject=Unsubscribe&body=Please remove me from further emails." style="color:#1A9B72;">Unsubscribe</a></p>
           </div>
         `
       },
       {
         delay: 5 * 24 * 60 * 60 * 1000, // 5 days
-        subject: `How Bloom Events got 3ÃÂ more enquiries in 6 weeks`,
+        subject: `How Bloom Events got 3ÃÂÃÂ more enquiries in 6 weeks`,
         html: `
           <div style="font-family:-apple-system,Arial,sans-serif;max-width:580px;margin:0 auto;padding:32px 24px;background:#fff;">
             <div style="margin-bottom:24px;"><span style="font-weight:700;font-size:18px;color:#062B23;">nu</span><span style="font-weight:700;font-size:18px;color:#0A0A0A;">vora</span></div>
             <h2 style="font-weight:700;font-size:22px;letter-spacing:-0.5px;color:#0A0A0A;margin-bottom:12px;">A quick story, ${firstName}.</h2>
-            <p style="color:#666;line-height:1.7;margin-bottom:16px;">Bloom Events is a Johannesburg wedding and events company. Before Nuvora, they had a decent website Ã¢ÂÂ but it was silent. No leads coming in automatically. No follow-up system. Just a site that sat there waiting.</p>
+            <p style="color:#666;line-height:1.7;margin-bottom:16px;">Bloom Events is a Johannesburg wedding and events company. Before Nuvora, they had a decent website ÃÂ¢ÃÂÃÂ but it was silent. No leads coming in automatically. No follow-up system. Just a site that sat there waiting.</p>
             <p style="color:#666;line-height:1.7;margin-bottom:16px;">Six weeks after launching with Nuvora's Growth package, here is what changed:</p>
             <div style="background:#EAF7F2;border-radius:12px;padding:20px;margin-bottom:20px;">
               <div style="display:flex;gap:24px;flex-wrap:wrap;">
-                <div><div style="font-weight:700;font-size:24px;color:#1A9B72;">3.2ÃÂ</div><div style="font-size:12px;color:#666;">More enquiries per month</div></div>
-                <div><div style="font-weight:700;font-size:24px;color:#1A9B72;">4.9Ã¢ÂÂ</div><div style="font-size:12px;color:#666;">Google rating</div></div>
+                <div><div style="font-weight:700;font-size:24px;color:#1A9B72;">3.2ÃÂÃÂ</div><div style="font-size:12px;color:#666;">More enquiries per month</div></div>
+                <div><div style="font-weight:700;font-size:24px;color:#1A9B72;">4.9ÃÂ¢ÃÂÃÂ</div><div style="font-size:12px;color:#666;">Google rating</div></div>
                 <div><div style="font-weight:700;font-size:24px;color:#1A9B72;">48hr</div><div style="font-size:12px;color:#666;">From brief to live site</div></div>
               </div>
             </div>
-            <p style="color:#666;line-height:1.7;margin-bottom:24px;">The difference was not magic. It was a system Ã¢ÂÂ automated lead capture, smart review filtering, and a follow-up sequence that converts enquiries into bookings without any manual effort.</p>
+            <p style="color:#666;line-height:1.7;margin-bottom:24px;">The difference was not magic. It was a system ÃÂ¢ÃÂÃÂ automated lead capture, smart review filtering, and a follow-up sequence that converts enquiries into bookings without any manual effort.</p>
             <p style="color:#666;line-height:1.7;margin-bottom:24px;">We can build the same system for ${business || 'your business'}. Want to see how?</p>
             <a href="https://calendly.com/nuvoramain/30min" style="display:inline-block;background:#1A9B72;color:#fff;padding:12px 24px;border-radius:24px;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:24px;">Book a free 30-min call</a>
-            <p style="color:#999;font-size:12px;">Nuvora ÃÂ· info@nuvoraweb.co.za ÃÂ· <a href="https://nuvoraweb.co.za" style="color:#1A9B72;">nuvoraweb.co.za</a></p>
+            <p style="color:#999;font-size:12px;">Nuvora ÃÂÃÂ· info@nuvoraweb.co.za ÃÂÃÂ· <a href="https://nuvoraweb.co.za" style="color:#1A9B72;">nuvoraweb.co.za</a></p>
+              <p style="color:#bbb;font-size:11px;margin-top:12px;border-top:1px solid #f0f0f0;padding-top:10px;">You received this because you enquired via nuvoraweb.co.za. <a href="mailto:info@nuvoraweb.co.za?subject=Unsubscribe&body=Please remove me from further emails." style="color:#1A9B72;">Unsubscribe</a></p>
           </div>
         `
       },
@@ -173,19 +176,20 @@ export default async function handler(req, res) {
             <p style="color:#666;line-height:1.7;margin-bottom:20px;">Hey ${firstName}. We know making a decision like this takes thought. Here are the three things most people wonder about before getting started.</p>
             <div style="border-left:3px solid #1A9B72;padding-left:16px;margin-bottom:20px;">
               <p style="font-weight:600;color:#0A0A0A;margin-bottom:6px;">"Is it really worth the monthly cost?"</p>
-              <p style="color:#666;line-height:1.7;font-size:14px;">One new client per month from your website pays for the entire Nuvora subscription Ã¢ÂÂ usually many times over. Most clients see their first conversion within 30 days.</p>
+              <p style="color:#666;line-height:1.7;font-size:14px;">One new client per month from your website pays for the entire Nuvora subscription ÃÂ¢ÃÂÃÂ usually many times over. Most clients see their first conversion within 30 days.</p>
             </div>
             <div style="border-left:3px solid #1A9B72;padding-left:16px;margin-bottom:20px;">
               <p style="font-weight:600;color:#0A0A0A;margin-bottom:6px;">"Can I not just build it myself?"</p>
-              <p style="color:#666;line-height:1.7;font-size:14px;">You could Ã¢ÂÂ but a DIY site typically takes weeks, lacks automation, and often looks it. Nuvora delivers a professional, fully automated system in 48 hours, maintained and updated monthly.</p>
+              <p style="color:#666;line-height:1.7;font-size:14px;">You could ÃÂ¢ÃÂÃÂ but a DIY site typically takes weeks, lacks automation, and often looks it. Nuvora delivers a professional, fully automated system in 48 hours, maintained and updated monthly.</p>
             </div>
             <div style="border-left:3px solid #1A9B72;padding-left:16px;margin-bottom:24px;">
               <p style="font-weight:600;color:#0A0A0A;margin-bottom:6px;">"What if I want to cancel?"</p>
               <p style="color:#666;line-height:1.7;font-size:14px;">Cancel anytime with 30 days notice. No lock-in, no penalty. We are confident enough in our results to never need a long-term contract.</p>
             </div>
-            <p style="color:#666;line-height:1.7;margin-bottom:24px;">Still have questions? Book a free call and we will answer everything honestly Ã¢ÂÂ no pressure, no pitch.</p>
+            <p style="color:#666;line-height:1.7;margin-bottom:24px;">Still have questions? Book a free call and we will answer everything honestly ÃÂ¢ÃÂÃÂ no pressure, no pitch.</p>
             <a href="https://calendly.com/nuvoramain/30min" style="display:inline-block;background:#1A9B72;color:#fff;padding:12px 24px;border-radius:24px;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:24px;">Get honest answers on a free call</a>
-            <p style="color:#999;font-size:12px;">Nuvora ÃÂ· info@nuvoraweb.co.za ÃÂ· <a href="https://nuvoraweb.co.za" style="color:#1A9B72;">nuvoraweb.co.za</a></p>
+            <p style="color:#999;font-size:12px;">Nuvora ÃÂÃÂ· info@nuvoraweb.co.za ÃÂÃÂ· <a href="https://nuvoraweb.co.za" style="color:#1A9B72;">nuvoraweb.co.za</a></p>
+              <p style="color:#bbb;font-size:11px;margin-top:12px;border-top:1px solid #f0f0f0;padding-top:10px;">You received this because you enquired via nuvoraweb.co.za. <a href="mailto:info@nuvoraweb.co.za?subject=Unsubscribe&body=Please remove me from further emails." style="color:#1A9B72;">Unsubscribe</a></p>
           </div>
         `
       },
@@ -197,17 +201,18 @@ export default async function handler(req, res) {
             <div style="margin-bottom:24px;"><span style="font-weight:700;font-size:18px;color:#062B23;">nu</span><span style="font-weight:700;font-size:18px;color:#0A0A0A;">vora</span></div>
             <h2 style="font-weight:700;font-size:22px;letter-spacing:-0.5px;color:#0A0A0A;margin-bottom:12px;">Hey ${firstName}, this is the last email from us for now.</h2>
             <p style="color:#666;line-height:1.7;margin-bottom:16px;">We have reached out a few times over the past two weeks because we genuinely believe we can make a real difference for ${business || 'your business'}.</p>
-            <p style="color:#666;line-height:1.7;margin-bottom:16px;">If the timing is not right, no hard feelings at all Ã¢ÂÂ we will leave you alone from here.</p>
+            <p style="color:#666;line-height:1.7;margin-bottom:16px;">If the timing is not right, no hard feelings at all ÃÂ¢ÃÂÃÂ we will leave you alone from here.</p>
             <p style="color:#666;line-height:1.7;margin-bottom:20px;">But if you are still curious, here is where things stand:</p>
             <div style="background:#062B23;border-radius:12px;padding:20px;margin-bottom:24px;">
               <p style="color:rgba(255,255,255,0.7);font-size:13px;margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;">Founding Client Offer</p>
-              <p style="color:#fff;font-weight:600;font-size:15px;margin-bottom:4px;">We are still onboarding our first 10 founding clients at launch pricing Ã¢ÂÂ no setup fee, locked-in monthly rate.</p>
+              <p style="color:#fff;font-weight:600;font-size:15px;margin-bottom:4px;">We are still onboarding our first 10 founding clients at launch pricing ÃÂ¢ÃÂÃÂ no setup fee, locked-in monthly rate.</p>
               <p style="color:rgba(255,255,255,0.5);font-size:13px;">Once those 10 spots are filled, pricing moves to standard rates and the setup fee applies.</p>
             </div>
             <a href="https://nuvoraweb.co.za/#packages" style="display:inline-block;background:#1A9B72;color:#fff;padding:12px 24px;border-radius:24px;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:12px;">View packages and get started</a>
             <br>
             <a href="https://calendly.com/nuvoramain/30min" style="display:inline-block;background:#fff;color:#062B23;padding:12px 24px;border-radius:24px;text-decoration:none;font-weight:600;font-size:14px;margin-bottom:24px;border:1px solid #ddd;">Book a free 30-min call instead</a>
-            <p style="color:#999;font-size:12px;">Nuvora ÃÂ· info@nuvoraweb.co.za ÃÂ· <a href="https://nuvoraweb.co.za" style="color:#1A9B72;">nuvoraweb.co.za</a><br>You received this because you enquired via nuvoraweb.co.za.</p>
+            <p style="color:#999;font-size:12px;">Nuvora ÃÂÃÂ· info@nuvoraweb.co.za ÃÂÃÂ· <a href="https://nuvoraweb.co.za" style="color:#1A9B72;">nuvoraweb.co.za</a><br>You received this because you enquired via nuvoraweb.co.za.</p>
+              <p style="color:#bbb;font-size:11px;margin-top:12px;border-top:1px solid #f0f0f0;padding-top:10px;">You received this because you enquired via nuvoraweb.co.za. <a href="mailto:info@nuvoraweb.co.za?subject=Unsubscribe&body=Please remove me from further emails." style="color:#1A9B72;">Unsubscribe</a></p>
           </div>
         `
       }
