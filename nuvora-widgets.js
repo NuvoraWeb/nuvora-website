@@ -1,12 +1,12 @@
 /**
  * nuvora-widgets.js
- * Chatbot · Google Reviews · Lead Gen
+ * Chatbot Â· Google Reviews Â· Lead Gen
  *
- * CONFIG — edit these before deploying:
+ * CONFIG â edit these before deploying:
  */
 const NUVORA_CONFIG = {
-  GOOGLE_PLACE_ID: 'YOUR_GOOGLE_PLACE_ID',   // e.g. ChIJN1t_tDeuEmsRUsoyG83frY4
-  GOOGLE_API_KEY:  'YOUR_GOOGLE_API_KEY',     // Places API key (restrict to your domain)
+  GOOGLE_PLACE_ID: 'ChIJjdTpT3xflR4Rfzd06XcMsr0',   // e.g. ChIJN1t_tDeuEmsRUsoyG83frY4
+  GOOGLE_API_KEY:  'AIzaSyAZYgyBOaRKmmGofeOrB0uZq6qM6eQPryM',     // Places API key (restrict to your domain)
   REVIEW_MIN_STARS: 4,                         // Only show reviews with 4+ stars publicly
   NEGATIVE_FEEDBACK_URL: '/nuvora-contact-v3.html?feedback=1', // Where to send unhappy customers
   CHAT_ENDPOINT: '/api/chat',
@@ -73,7 +73,7 @@ const NUVORA_CONFIG = {
       </div>
       <div class="nv-chat-msgs" id="nv-chat-msgs"></div>
       <div class="nv-chat-input-wrap">
-        <textarea id="nv-chat-input" rows="1" placeholder="Ask me anything…"></textarea>
+        <textarea id="nv-chat-input" rows="1" placeholder="Ask me anythingâ¦"></textarea>
         <button id="nv-chat-send" onclick="nvSendMsg()">
           <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         </button>
@@ -106,7 +106,7 @@ const NUVORA_CONFIG = {
     const isOpen = panel.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     if (isOpen && msgs.children.length === 0) {
-      setTimeout(() => nvBotMsg("Hi! I'm Nuvora's AI assistant. Ask me about our services, pricing, or how we can help your business — or tell me a bit about what you're looking for."), 300);
+      setTimeout(() => nvBotMsg("Hi! I'm Nuvora's AI assistant. Ask me about our services, pricing, or how we can help your business â or tell me a bit about what you're looking for."), 300);
     }
     if (isOpen) input.focus();
   };
@@ -135,11 +135,11 @@ const NUVORA_CONFIG = {
       });
       const data = await res.json();
       typing.remove();
-      const reply = data.reply || "Let me get back to you on that — feel free to email us at hello@nuvora.co.za";
+      const reply = data.reply || "Let me get back to you on that â feel free to email us at hello@nuvora.co.za";
       history.push({ role: 'assistant', content: reply });
       nvBotMsg(reply);
 
-      // Smart lead extraction — try to extract from the full conversation history
+      // Smart lead extraction â try to extract from the full conversation history
       // whenever the AI confirms it has the details (works for one-shot and multi-step)
       const confirmPhrases = ["i've got", "i have your", "got everything", "got all your", "got your details",
         "sending this to", "team will be in touch", "get back to you within", "i'll pass"];
@@ -153,10 +153,10 @@ const NUVORA_CONFIG = {
         // Email regex
         const emailMatch = fullConvo.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/);
 
-        // Try to extract name — look for "my name is X" or "name is X"
+        // Try to extract name â look for "my name is X" or "name is X"
         const nameMatch = fullConvo.match(/(?:my name is|i(?:'m| am)|name(?:'s| is))\s+([A-Za-z]+(?:\s+[A-Za-z]+)?)/i);
 
-        // Try to extract business — look for "company is/called X" or "business is X"
+        // Try to extract business â look for "company is/called X" or "business is X"
         const bizMatch = fullConvo.match(/(?:company(?:\s+is|\s+called)?|business(?:\s+is|\s+called)?|called)\s+([A-Za-z0-9\s&'.\-]+?)(?:\s*,|\s*\.|$)/i);
 
         if (emailMatch) {
@@ -193,7 +193,7 @@ const NUVORA_CONFIG = {
       leadData.business = text;
       leadCollecting = false;
       leadData.saved = true;
-      nvBotMsg("Perfect — someone from Nuvora will be in touch within 24 hours!");
+      nvBotMsg("Perfect â someone from Nuvora will be in touch within 24 hours!");
       try {
         await fetch(NUVORA_CONFIG.LEAD_ENDPOINT, {
           method: 'POST',
@@ -273,7 +273,7 @@ const NUVORA_CONFIG = {
 
   function renderReviews(reviews, rating, total) {
     if (reviews.length === 0) return renderFallbackReviews();
-    const stars = r => '★'.repeat(r) + '☆'.repeat(5 - r);
+    const stars = r => 'â'.repeat(r) + 'â'.repeat(5 - r);
     const cards = reviews.slice(0, 6).map(r => `
       <div class="rv-card">
         <div class="rv-top">
@@ -283,14 +283,14 @@ const NUVORA_CONFIG = {
             <div class="rv-stars">${stars(r.rating)}</div>
           </div>
         </div>
-        <div class="rv-text">${r.text.slice(0, 180)}${r.text.length > 180 ? '…' : ''}</div>
+        <div class="rv-text">${r.text.slice(0, 180)}${r.text.length > 180 ? 'â¦' : ''}</div>
       </div>
     `).join('');
 
     return `
       <div class="rv-summary">
         <div class="rv-big-num">${rating.toFixed(1)}</div>
-        <div><div class="rv-big-stars">${'★'.repeat(Math.round(rating))}${'☆'.repeat(5 - Math.round(rating))}</div>
+        <div><div class="rv-big-stars">${'â'.repeat(Math.round(rating))}${'â'.repeat(5 - Math.round(rating))}</div>
         <div class="rv-total">Based on ${total} reviews</div></div>
       </div>
       <div class="rv-grid">${cards}</div>
@@ -311,7 +311,7 @@ const NUVORA_CONFIG = {
       { name: 'James R.', stars: 5, text: 'Honest, transparent pricing and they deliver on every promise. The Google review system alone has made a huge difference to our reputation.' },
       { name: 'Ayesha P.', stars: 5, text: 'From brief to launch in 5 days. The site looks premium and the chatbot has already captured 12 leads in the first month.' },
     ];
-    const stars = r => '★'.repeat(r);
+    const stars = r => 'â'.repeat(r);
     const cards = placeholders.map(r => `
       <div class="rv-card">
         <div class="rv-top">
@@ -324,7 +324,7 @@ const NUVORA_CONFIG = {
     return `
       <div class="rv-summary">
         <div class="rv-big-num">5.0</div>
-        <div><div class="rv-big-stars">★★★★★</div><div class="rv-total">South African businesses</div></div>
+        <div><div class="rv-big-stars">âââââ</div><div class="rv-total">South African businesses</div></div>
       </div>
       <div class="rv-grid">${cards}</div>
       <div class="rv-footer">
@@ -365,7 +365,7 @@ const NUVORA_CONFIG = {
 
 
 /* ============================================================
-   LEAD GEN — Exit-intent popup + scroll trigger
+   LEAD GEN â Exit-intent popup + scroll trigger
    ============================================================ */
 (function initLeadGen() {
   // Don't show on contact page
@@ -403,7 +403,7 @@ const NUVORA_CONFIG = {
   const html = `
     <div id="nv-lead-overlay">
       <div id="nv-lead-modal">
-        <button class="nv-lead-close" onclick="nvCloseLeadPopup()">×</button>
+        <button class="nv-lead-close" onclick="nvCloseLeadPopup()">Ã</button>
         <div id="nv-lead-form-wrap">
           <div class="nv-lead-tag">Free quote</div>
           <h3 class="nv-lead-h">Get your site live<br><em>in 48 hours.</em></h3>
@@ -415,7 +415,7 @@ const NUVORA_CONFIG = {
           <span class="nv-lead-skip" onclick="nvCloseLeadPopup()">No thanks, I'll browse first</span>
         </div>
         <div class="nv-lead-success" id="nv-lead-success">
-          <div class="nv-lead-success-icon">✓</div>
+          <div class="nv-lead-success-icon">â</div>
           <div class="nv-lead-success-title">You're on the list</div>
           <div class="nv-lead-success-sub">We'll be in touch within 24 hours with a clear plan and honest pricing.</div>
         </div>
@@ -440,13 +440,13 @@ const NUVORA_CONFIG = {
     if (e.clientY <= 0) showPopup();
   });
 
-  // Scroll trigger — show after 60% scroll
+  // Scroll trigger â show after 60% scroll
   window.addEventListener('scroll', () => {
     const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     if (pct > 60) showPopup();
   }, { passive: true });
 
-  // Mobile — time-based (25s)
+  // Mobile â time-based (25s)
   setTimeout(() => showPopup(), 25000);
 
   window.nvCloseLeadPopup = function() {
