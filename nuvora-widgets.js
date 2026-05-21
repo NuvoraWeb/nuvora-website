@@ -273,7 +273,7 @@ const NUVORA_CONFIG = {
 
   function renderReviews(reviews, rating, total) {
     if (reviews.length === 0) return renderFallbackReviews();
-    const stars = r => 'â'.repeat(r) + 'â'.repeat(5 - r);
+    const stars = r => '&#9733;'.repeat(r) + 'â'.repeat(5 - r);
     const cards = reviews.slice(0, 6).map(r => `
       <div class="rv-card">
         <div class="rv-top">
@@ -290,7 +290,7 @@ const NUVORA_CONFIG = {
     return `
       <div class="rv-summary">
         <div class="rv-big-num">${rating.toFixed(1)}</div>
-        <div><div class="rv-big-stars">${'â'.repeat(Math.round(rating))}${'â'.repeat(5 - Math.round(rating))}</div>
+        <div><div class="rv-big-stars">${'&#9733;'.repeat(Math.round(rating))}${'â'.repeat(5 - Math.round(rating))}</div>
         <div class="rv-total">Based on ${total} reviews</div></div>
       </div>
       <div class="rv-grid">${cards}</div>
@@ -311,7 +311,7 @@ const NUVORA_CONFIG = {
       { name: 'James R.', stars: 5, text: 'Honest, transparent pricing and they deliver on every promise. The Google review system alone has made a huge difference to our reputation.' },
       { name: 'Ayesha P.', stars: 5, text: 'From brief to launch in 5 days. The site looks premium and the chatbot has already captured 12 leads in the first month.' },
     ];
-    const stars = r => 'â'.repeat(r);
+    const stars = r => '&#9733;'.repeat(r);
     const cards = placeholders.map(r => `
       <div class="rv-card">
         <div class="rv-top">
@@ -324,7 +324,7 @@ const NUVORA_CONFIG = {
     return `
       <div class="rv-summary">
         <div class="rv-big-num">5.0</div>
-        <div><div class="rv-big-stars">âââââ</div><div class="rv-total">South African businesses</div></div>
+        <div><div class="rv-big-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="rv-total">South African businesses</div></div>
       </div>
       <div class="rv-grid">${cards}</div>
       <div class="rv-footer">
