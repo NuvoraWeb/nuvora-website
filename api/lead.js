@@ -1,9 +1,45 @@
 // api/lead.js ÃÂ¢ÃÂÃÂ Vercel serverless function
 // Saves lead to Supabase, triggers Make.com webhook, and sends 5-email nurture sequence via Resend
 
+// --- Security ---
+const rateLimitMap = new Map();
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const windowMs = 60 * 1000; // 1 minute
+  const maxRequests = 5;
+  const entry = rateLimitMap.get(ip) || { count: 0, start: now };
+  if (now - entry.start > windowMs) {
+    rateLimitMap.set(ip, { count: 1, start: now });
+    return true;
+  }
+  if (entry.count >= maxRequests) return false;
+  rateLimitMap.set(ip, { count: entry.count + 1, start: entry.start });
+  return true;
+}
+
+function sanitise(str) {
+  if (typeof str !== 'string') return '';
+  return str.replace(/<[^>]*>/g, '').replace(/['";\/\\]/g, '').trim().slice(0, 500);
+}
+
+function setCORSHeaders(res) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://nuvoraweb.co.za');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}
+
 export default async function handler(req, res) {
+  setCORSHeaders(res);
+  if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Rate limiting
+  const clientIp = req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown';
+  if (!checkRateLimit(clientIp)) {
+    return res.status(429).json({ error: 'Too many requests. Please wait a minute.' });
   }
 
   const { name, email, phone, business, industry, package: pkg, message, source } = req.body;
