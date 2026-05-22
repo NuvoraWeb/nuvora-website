@@ -609,6 +609,7 @@ async function submitExit(){
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({name:name,email:email,business:biz,source:'exit-intent'})
     });
+    if(typeof gtag!=='undefined'){gtag('event','conversion',{'send_to':'AW-8252491888/lead_submit'});}
     document.querySelector('.ep-form').style.display='none';
     document.querySelector('.ep-skip').style.display='none';
     document.getElementById('ep-success').style.display='block';
