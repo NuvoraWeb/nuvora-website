@@ -1,4 +1,13 @@
+// --- CORS ---
+function setCORSHeaders(res) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://nuvoraweb.co.za');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+}
+
 export default async function handler(req, res) {
+  setCORSHeaders(res);
+  if (req.method === 'OPTIONS') return res.status(200).end();
   // Simple token auth
   const { token } = req.query;
   if (token !== process.env.DASHBOARD_TOKEN) {
