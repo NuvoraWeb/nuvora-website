@@ -30,7 +30,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:400;padding:0 32px;height:52px;d
 .menu-ov a{font-weight:600;font-size:clamp(26px,6vw,42px);color:var(--black);text-decoration:none;letter-spacing:-1.5px;padding:5px 0;transition:color .12s;}
 .menu-ov a:hover{color:var(--teal);}
 .menu-sub{font-size:12px;color:var(--text-s);margin-top:24px;}
-.hero{min-height:100vh;display:flex;align-items:center;padding:80px 32px 64px;position:relative;overflow:hidden;background:linear-gradient(160deg,#EAF7F2 0%,var(--bg) 55%,#E8E8F0 100%);}
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 32px 64px;position:relative;overflow:hidden;background:linear-gradient(160deg,rgba(5,10,8,0.88) 0%,rgba(6,43,35,0.75) 50%,rgba(5,10,8,0.85) 100%),url(/assets/hero-dashboard.png) center/cover no-repeat;}
 .hero-blob{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(26,155,114,.16) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;animation:blobF 8s ease-in-out infinite alternate;}
 .hero-blob2{position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(26,155,114,.09) 0%,transparent 70%);bottom:-60px;left:28%;pointer-events:none;animation:blobF 11s ease-in-out infinite alternate-reverse;}
 @keyframes blobF{from{transform:scale(1);}to{transform:translate(18px,18px) scale(1.05);}}
@@ -239,6 +239,12 @@ footer{background:rgba(242,242,247,.9);backdrop-filter:blur(20px);border-top:1px
   .video-content, .video-content-right { padding: 0 24px; max-width: 100%; margin-left: 0; text-align: left; }
   .feature-list-right li { justify-content: flex-start; flex-direction: row-reverse; }
 }
+</style>
+
+<style>
+/* CINEMATIC DARK OVERRIDE */
+body { background: #050A08 !important; }
+.hero-blob { display: none !important; }
 </style>
 </head>
 <body>
