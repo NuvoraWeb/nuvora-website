@@ -4,10 +4,9 @@
     { "source": "/services", "destination": "/nuvora-services-v3.html" },
     { "source": "/portfolio", "destination": "/nuvora-portfolio-v3.html" },
     { "source": "/about", "destination": "/nuvora-about-v3.html" },
-    { "source": "/contact", "destination": "/nuvora-contact-v3.html" }
-  ,
-    {"src": "/terms", "dest": "/terms.html"},
-    {"src": "/privacy", "dest": "/privacy.html"},
-    {"src": "/refund-policy", "dest": "/refund-policy.html"}
+    { "source": "/contact", "destination": "/nuvora-contact-v3.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/refund-policy", "destination": "/refund-policy.html" }
   ]
 }
