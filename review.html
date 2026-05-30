@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Share Your Experience · Nuvora</title>
+<meta name="robots" content="noindex"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{--forest:#062B23;--teal:#1A9B72;--teal-l:#26C689;--black:#0A0A0A;--bg:#F8F8F6;--text-m:#555;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;}
+
+  .card{background:#fff;border-radius:20px;padding:40px 36px;max-width:460px;width:100%;box-shadow:0 4px 32px rgba(0,0,0,.08);}
+
+  .logo{display:flex;align-items:center;gap:2px;margin-bottom:32px;}
+  .logo-n{font-weight:700;font-size:22px;color:var(--forest);}
+  .logo-uvora{font-weight:700;font-size:22px;color:var(--black);}
+
+  .step{display:none;}
+  .step.active{display:block;}
+
+  h1{font-size:22px;font-weight:700;color:var(--black);letter-spacing:-.4px;margin-bottom:8px;}
+  p{color:var(--text-m);font-size:15px;line-height:1.6;margin-bottom:28px;}
+
+  /* Star Rating */
+  .stars{display:flex;gap:10px;justify-content:center;margin-bottom:32px;}
+  .star{font-size:44px;cursor:pointer;color:#E0E0E0;transition:color .15s,transform .15s;line-height:1;}
+  .star:hover,.star.active{color:#F5B800;}
+  .star:hover{transform:scale(1.12);}
+
+  /* Buttons */
+  .btn{display:block;width:100%;padding:14px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;border:none;transition:opacity .15s,transform .15s;text-align:center;text-decoration:none;}
+  .btn:active{transform:scale(.98);}
+  .btn-primary{background:var(--teal);color:#fff;}
+  .btn-primary:hover{opacity:.9;}
+  .btn-outline{background:#fff;color:var(--black);border:1.5px solid #ddd;margin-top:10px;}
+  .btn-outline:hover{border-color:#aaa;}
+  .btn-google{background:#fff;color:#3C4043;border:1.5px solid #ddd;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;}
+  .btn-google svg{width:20px;height:20px;flex-shrink:0;}
+
+  /* Textarea */
+  textarea{width:100%;border:1.5px solid #E0E0E0;border-radius:12px;padding:14px;font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;resize:none;outline:none;color:var(--black);transition:border-color .15s;margin-bottom:20px;}
+  textarea:focus{border-color:var(--teal);}
+
+  input[type=text],input[type=email]{width:100%;border:1.5px solid #E0E0E0;border-radius:12px;padding:13px 16px;font-family:'Inter',sans-serif;font-size:14px;outline:none;color:var(--black);transition:border-color .15s;margin-bottom:12px;}
+  input:focus{border-color:var(--teal);}
+  label{display:block;font-size:12px;font-weight:600;color:#999;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
+
+  /* Sentiment badge */
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:20px;}
+  .badge-positive{background:#EAF7F2;color:var(--teal);}
+  .badge-negative{background:#FFF3CD;color:#856404;}
+
+  /* Thank you icon */
+  .ty-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-l));display:flex;align-items:center;justify-content:center;margin:0 auto 24px;}
+  .ty-icon svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+
+  .selected-stars{font-size:28px;letter-spacing:2px;margin-bottom:16px;text-align:center;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo"><span class="logo-n">nu</span><span class="logo-uvora">vora</span></div>
+
+  <!-- Step 1: Star Rating -->
+  <div class="step active" id="step-1">
+    <h1>How was your experience?</h1>
+    <p>Your honest feedback helps us improve and helps other South African businesses find us.</p>
+    <div class="stars" id="stars">
+      <span class="star" data-v="1">★</span>
+      <span class="star" data-v="2">★</span>
+      <span class="star" data-v="3">★</span>
+      <span class="star" data-v="4">★</span>
+      <span class="star" data-v="5">★</span>
+    </div>
+  </div>
+
+  <!-- Step 2a: Happy → to Google -->
+  <div class="step" id="step-happy">
+    <div class="selected-stars" id="happy-stars"></div>
+    <div class="badge badge-positive">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Great to hear!
+    </div>
+    <h1>Would you share that on Google?</h1>
+    <p>A quick Google review makes a huge difference for our business. It only takes 60 seconds and helps other South African businesses find us.</p>
+    <a href="https://g.page/r/ChIJjdTpT3xflR4Rfzd06XcMsr0/review" target="_blank" class="btn btn-google" id="google-btn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Leave a Google review
+    </a>
+    <button class="btn btn-outline" onclick="skipGoogle()">No thanks, skip</button>
+  </div>
+
+  <!-- Step 2b: Unhappy → private feedback -->
+  <div class="step" id="step-unhappy">
+    <div class="selected-stars" id="unhappy-stars"></div>
+    <div class="badge badge-negative">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      We want to make it right
+    </div>
+    <h1>We're sorry to hear that.</h1>
+    <p>Please tell us what went wrong — we read every message personally and will follow up to resolve it.</p>
+    <div>
+      <label>Your name</label>
+      <input type="text" id="fb-name" placeholder="e.g. Thabo Mokoena"/>
+      <label>Your email</label>
+      <input type="email" id="fb-email" placeholder="e.g. thabo@business.co.za"/>
+      <label>What happened? <span style="color:#ccc;font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+      <textarea id="fb-text" rows="4" placeholder="Tell us what we could have done better..."></textarea>
+    </div>
+    <button class="btn btn-primary" onclick="submitFeedback()">Send private feedback</button>
+    <button class="btn btn-outline" onclick="skipFeedback()">Skip</button>
+  </div>
+
+  <!-- Step 3: Thank you (after Google click or feedback submitted) -->
+  <div class="step" id="step-thanks">
+    <div class="ty-icon">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h1 style="text-align:center;" id="thanks-title">Thank you!</h1>
+    <p style="text-align:center;" id="thanks-msg">Your feedback means a lot to us. We appreciate you taking the time.</p>
+    <a href="https://nuvoraweb.co.za" class="btn btn-primary" style="margin-top:8px;">Back to Nuvora</a>
+  </div>
+</div>
+
+<script>
+  let selectedStars = 0;
+
+  // Get context from URL params (set in review-request email)
+  const params = new URLSearchParams(window.location.search);
+  const clientName = params.get('name') || '';
+  const clientEmail = params.get('email') || '';
+  const businessName = params.get('business') || '';
+
+  // Star hover + select
+  const starEls = document.querySelectorAll('.star');
+  starEls.forEach(star => {
+    star.addEventListener('mouseover', () => highlightStars(+star.dataset.v));
+    star.addEventListener('mouseout', () => highlightStars(selectedStars));
+    star.addEventListener('click', () => {
+      selectedStars = +star.dataset.v;
+      highlightStars(selectedStars);
+      setTimeout(() => goToStep2(selectedStars), 300);
+    });
+  });
+
+  function highlightStars(n) {
+    starEls.forEach(s => s.classList.toggle('active', +s.dataset.v <= n));
+  }
+
+  function starString(n) {
+    return '★'.repeat(n) + '☆'.repeat(5 - n);
+  }
+
+  function goToStep2(stars) {
+    document.getElementById('step-1').classList.remove('active');
+    if (stars >= 4) {
+      document.getElementById('happy-stars').textContent = starString(stars);
+      document.getElementById('step-happy').classList.add('active');
+      // Track in backend
+      logRating(stars);
+    } else {
+      document.getElementById('unhappy-stars').textContent = starString(stars);
+      document.getElementById('step-unhappy').classList.add('active');
+    }
+  }
+
+  function logRating(stars) {
+    fetch('/api/review-gate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stars, clientName, clientEmail, businessName }),
+    }).catch(() => {});
+  }
+
+  function skipGoogle() {
+    showThanks('Thank you!', 'We appreciate you taking the time to share your experience.');
+  }
+
+  document.getElementById('google-btn').addEventListener('click', () => {
+    setTimeout(() => showThanks('Thank you for the review! 🎉', 'Your Google review helps other South African businesses find us. We really appreciate it.'), 500);
+  });
+
+  function submitFeedback() {
+    const feedback = document.getElementById('fb-text').value.trim();
+    const name = document.getElementById('fb-name').value.trim() || clientName;
+    const email = document.getElementById('fb-email').value.trim() || clientEmail;
+
+    fetch('/api/review-gate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        stars: selectedStars,
+        feedback,
+        clientName: name,
+        clientEmail: email,
+        businessName,
+      }),
+    }).catch(() => {});
+
+    showThanks(
+      'We hear you.',
+      'Thank you for sharing this privately. Someone from our team will follow up with you personally within 24 hours.'
+    );
+  }
+
+  function skipFeedback() {
+    // Still log it
+    fetch('/api/review-gate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ stars: selectedStars, clientName, clientEmail, businessName }),
+    }).catch(() => {});
+    showThanks('Thank you.', 'We appreciate your honesty and will work to do better.');
+  }
+
+  function showThanks(title, msg) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('thanks-title').textContent = title;
+    document.getElementById('thanks-msg').textContent = msg;
+    document.getElementById('step-thanks').classList.add('active');
+  }
+</script>
+</body>
+</html>

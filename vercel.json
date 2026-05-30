@@ -1,12 +1,12 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/nuvora-homepage-v3.html" },
     { "source": "/services", "destination": "/nuvora-services-v3.html" },
     { "source": "/portfolio", "destination": "/nuvora-portfolio-v3.html" },
     { "source": "/about", "destination": "/nuvora-about-v3.html" },
     { "source": "/contact", "destination": "/nuvora-contact-v3.html" },
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
-    { "source": "/refund-policy", "destination": "/refund-policy.html" }
+    { "source": "/refund-policy", "destination": "/refund-policy.html" },
+    { "source": "/review", "destination": "/review.html" }
   ]
 }
