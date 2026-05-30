@@ -295,7 +295,7 @@ const NUVORA_CONFIG = {
       </div>
       <div class="rv-grid">${cards}</div>
       <div class="rv-footer">
-        <a href="https://www.google.com/maps/place/?q=place_id:${NUVORA_CONFIG.GOOGLE_PLACE_ID}" target="_blank" class="rv-link">See all Google reviews</a>
+        <a href="https://g.page/r/CX83dOI3DLK9EBM/review" target="_blank" class="rv-link">See all Google reviews</a>
         <a href="${NUVORA_CONFIG.NEGATIVE_FEEDBACK_URL}" class="rv-feedback">Share private feedback</a>
       </div>
     `;

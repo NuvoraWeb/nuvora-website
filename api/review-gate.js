@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid star rating' });
   }
 
-  const GOOGLE_REVIEW_URL = 'https://g.page/r/ChIJjdTpT3xflR4Rfzd06XcMsr0/review';
+  const GOOGLE_REVIEW_URL = 'https://g.page/r/CX83dOI3DLK9EBM/review';
 
   // Happy customer (4-5 stars) → send to Google
   if (stars >= 4) {
