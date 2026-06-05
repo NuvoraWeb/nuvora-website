@@ -1,72 +1,176 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-386G4VHCKN"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-386G4VHCKN');</script>
 <title>How to turn your website into a 24/7 lead generation machine — Nuvora</title>
+<meta name="description" content="How to turn your website into a 24/7 lead generation machine">
+<meta name="robots" content="index, follow">
 <style>
-:root{--teal:#1A9B72;--teal-l:#26C689;--teal-d:#0D6B4F;--forest:#062B23;--black:#0A0A0A;--white:#fff;--bg:#F2F2F7;--text:#0A0A0A;--text-m:rgba(10,10,10,.46);--text-s:rgba(10,10,10,.26);--border:rgba(10,10,10,.07);--gb:rgba(255,255,255,.62);--gbb:rgba(255,255,255,.82);--font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Arial,sans-serif;--ease:cubic-bezier(.4,0,.2,1);}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
-body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;}
-nav{position:fixed;top:0;left:0;right:0;z-index:400;padding:0 32px;height:52px;display:flex;align-items:center;justify-content:space-between;background:rgba(242,242,247,.82);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border-bottom:1px solid rgba(255,255,255,.7);box-shadow:0 1px 0 rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.9);}
-.logo{font-weight:700;font-size:16px;letter-spacing:-.5px;text-decoration:none;display:flex;}.logo-nu{color:var(--teal);}.logo-vora{color:var(--black);}
-.nav-links{display:none;gap:24px;}@media(min-width:768px){.nav-links{display:flex;align-items:center;}}
-.nav-links a{font-size:13px;color:var(--text-m);text-decoration:none;transition:color .12s;}.nav-links a:hover{color:var(--black);}
-.nav-right{display:flex;align-items:center;gap:10px;}
-.nav-cta{background:var(--teal);color:#fff;font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;border:none;cursor:pointer;transition:background .15s;text-decoration:none;display:none;}@media(min-width:768px){.nav-cta{display:inline-flex;}}.nav-cta:hover{background:var(--teal-d);}
-.burger{width:28px;height:28px;display:flex;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:3px;}
-.burger span{display:block;height:1px;background:var(--black);border-radius:1px;transition:all .3s cubic-bezier(.77,0,.175,1);}.burger span:first-child{width:18px;}.burger span:nth-child(2){width:12px;}.burger span:last-child{width:18px;}
-.burger.open span:first-child{transform:translateY(6px) rotate(45deg);width:18px;}.burger.open span:nth-child(2){opacity:0;}.burger.open span:last-child{transform:translateY(-6px) rotate(-45deg);width:18px;}
-.menu-ov{position:fixed;inset:0;z-index:300;background:rgba(242,242,247,.94);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 32px;opacity:0;pointer-events:none;transition:opacity .3s var(--ease);}.menu-ov.open{opacity:1;pointer-events:all;}.menu-ov a{font-weight:600;font-size:clamp(26px,6vw,42px);color:var(--black);text-decoration:none;letter-spacing:-1.5px;padding:5px 0;transition:color .12s;}.menu-ov a:hover{color:var(--teal);}.menu-sub{font-size:12px;color:var(--text-s);margin-top:24px;}
-footer{background:rgba(242,242,247,.9);backdrop-filter:blur(20px);border-top:1px solid rgba(10,10,10,.06);padding:36px 32px 24px;}
-.footer-inner{max-width:720px;margin:0 auto;}.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--text-s);}
-@media(max-width:600px){nav,footer{padding-left:20px;padding-right:20px;}}
-</style></head><body>
-<div class="menu-ov" id="menuOv"><a href="index.html" onclick="closeMenu()">Home</a><a href="nuvora-services-v3.html" onclick="closeMenu()">Services</a><a href="nuvora-portfolio-v3.html" onclick="closeMenu()">Portfolio</a><a href="nuvora-about-v3.html" onclick="closeMenu()">About</a><a href="nuvora-contact-v3.html" onclick="closeMenu()">Contact</a><span class="menu-sub">info@nuvoraweb.co.za</span></div>
-<nav><a href="index.html" class="logo"><span class="logo-nu">nu</span><span class="logo-vora">vora</span></a><div class="nav-links"><a href="nuvora-services-v3.html">Services</a><a href="nuvora-portfolio-v3.html">Portfolio</a><a href="nuvora-about-v3.html">About</a><a href="nuvora-contact-v3.html">Contact</a></div><div class="nav-right"><a href="nuvora-contact-v3.html" class="nav-cta">Get a quote</a><button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button></div></nav>
-<div style="padding:88px 32px 24px;background:linear-gradient(160deg,#EAF7F2 0%,var(--bg) 60%,#E8E8F0 100%);position:relative;overflow:hidden;">
-  <div style="position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(26,155,114,.15) 0%,transparent 70%);top:-100px;right:-60px;pointer-events:none;"></div>
-  <div style="max-width:720px;margin:0 auto;position:relative;z-index:1;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-      <a href="index.html" style="font-size:12px;color:var(--text-s);text-decoration:none;">Home</a>
-      <span style="font-size:12px;color:var(--text-s);">→</span>
-      <span style="font-size:12px;color:var(--teal);font-weight:500;">Lead Generation</span>
+:root{--blue:#0057FF;--blue-l:#4D8AFF;--blue-d:#003FCC;--blue-xl:#C8DCFF;--black:#08080F;--white:#fff;--bg:#E8E8EF;--bg2:#DDDDE8;--text:#08080F;--text-m:rgba(8,8,15,.55);--text-s:rgba(8,8,15,.38);--glass:rgba(255,255,255,.7);--glass-b:rgba(255,255,255,.9);--dark:#060C1E;--dark-2:#0D1530;--ease:cubic-bezier(.4,0,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);--serif:'Plus Jakarta Sans',-apple-system,sans-serif;--font:'Plus Jakarta Sans',-apple-system,sans-serif;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}body{font-family:var(--font);background:var(--bg);color:var(--text);overflow-x:hidden;}
+#sp{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--blue),var(--blue-l));z-index:9999;transition:width .05s linear;pointer-events:none;}
+.nav-wrap{position:fixed;top:14px;left:0;right:0;z-index:400;display:flex;justify-content:center;padding:0 20px;}
+nav{width:100%;max-width:860px;height:48px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.74);backdrop-filter:blur(28px) saturate(200%);-webkit-backdrop-filter:blur(28px) saturate(200%);border:1px solid rgba(255,255,255,.88);border-radius:30px;padding:0 8px 0 16px;box-shadow:0 2px 28px rgba(0,0,0,.09),inset 0 1px 0 rgba(255,255,255,.96);animation:navDrop .7s .1s var(--spring) both;}
+@keyframes navDrop{from{transform:translateY(-64px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;}.logo-mark{width:26px;height:26px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;transition:transform .3s var(--spring);}.logo-mark:hover{transform:scale(1.12) rotate(-5deg);}.logo-mark svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}.logo-text{font-family:var(--font);font-weight:700;font-size:15px;letter-spacing:-.5px;}.logo-n{color:var(--blue);}.logo-vora{color:var(--black);}
+.nav-links{display:none;gap:2px;}@media(min-width:768px){.nav-links{display:flex;align-items:center;}}.nav-links a{font-size:13px;color:var(--text-m);text-decoration:none;padding:6px 12px;border-radius:20px;transition:color .15s,background .15s;font-weight:500;}.nav-links a:hover,.nav-links a.active{color:var(--black);}.nav-links a.active{background:rgba(0,0,0,.05);}
+.nav-right{display:flex;align-items:center;gap:8px;}.nav-cta{background:var(--black);color:#fff;font-size:12px;font-weight:600;padding:7px 16px;border-radius:20px;border:none;text-decoration:none;transition:background .2s,transform .2s var(--spring);display:none;}@media(min-width:768px){.nav-cta{display:inline-flex;align-items:center;}}.nav-cta:hover{background:var(--blue);transform:translateY(-1px);}
+.burger{width:32px;height:32px;background:rgba(0,0,0,.05);border:none;border-radius:10px;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;}.burger span{display:block;height:1.5px;background:var(--black);border-radius:1px;transition:all .3s var(--ease);}.burger span:first-child{width:14px;}.burger span:nth-child(2){width:10px;}.burger span:last-child{width:14px;}.burger.open span:first-child{transform:translateY(5.5px) rotate(45deg);width:14px;}.burger.open span:nth-child(2){opacity:0;}.burger.open span:last-child{transform:translateY(-5.5px) rotate(-45deg);width:14px;}
+.menu-ov{position:fixed;inset:0;z-index:300;background:rgba(232,232,239,.97);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:0 32px;opacity:0;pointer-events:none;transition:opacity .3s var(--ease);}.menu-ov.open{opacity:1;pointer-events:all;}.menu-ov a{font-weight:700;font-size:clamp(32px,7vw,52px);color:var(--black);text-decoration:none;letter-spacing:-1px;padding:6px 0;transition:color .15s,transform .2s;display:block;}.menu-ov.open a{animation:menuIn .4s var(--spring) both;}.menu-ov.open a:nth-child(1){animation-delay:.05s;}.menu-ov.open a:nth-child(2){animation-delay:.1s;}.menu-ov.open a:nth-child(3){animation-delay:.15s;}.menu-ov.open a:nth-child(4){animation-delay:.2s;}.menu-ov.open a:nth-child(5){animation-delay:.25s;}@keyframes menuIn{from{opacity:0;transform:translateX(-20px);}to{opacity:1;transform:none;}}.menu-ov a:hover{color:var(--blue);}.menu-sub{font-size:12px;color:var(--text-s);margin-top:28px;}
+.page-hero{padding:120px 48px 64px;background:linear-gradient(165deg,#EAEAEF 0%,#E0E0EA 50%,#CACED0 80%,var(--blue) 100%);position:relative;overflow:hidden;}
+.page-hero-blob{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,87,255,.18),transparent 70%);top:-80px;right:-60px;pointer-events:none;animation:blobDrift 10s ease-in-out infinite alternate;}@keyframes blobDrift{from{transform:translate(0,0) scale(1);}to{transform:translate(20px,16px) scale(1.07);}}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.page-tag{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(8,8,15,.5);font-weight:600;margin-bottom:12px;opacity:0;transform:translateY(10px);animation:fadeUp .5s .2s var(--ease) forwards;}
+.page-h{font-weight:600;font-size:clamp(36px,5.5vw,60px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;color:var(--black);margin-bottom:16px;opacity:0;transform:translateY(16px);animation:fadeUp .6s .3s var(--spring) forwards;}.page-h em{font-style:italic;background:linear-gradient(135deg,var(--blue),var(--blue-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.page-sub{font-size:15px;color:rgba(8,8,15,.62);max-width:460px;line-height:1.7;opacity:0;transform:translateY(12px);animation:fadeUp .6s .42s var(--ease) forwards;}@keyframes fadeUp{to{opacity:1;transform:none;}}
+section{padding:72px 48px;background:var(--bg);}.section-inner{max-width:1100px;margin:0 auto;}
+.section-tag{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:10px;}.section-h{font-weight:700;font-size:clamp(24px,3.2vw,40px);letter-spacing:-1px;line-height:1.1;color:var(--black);}.section-h em{font-style:italic;color:var(--blue);}
+.btn-primary{background:var(--blue);color:#fff;padding:11px 24px;border-radius:24px;font-size:13px;font-weight:600;text-decoration:none;transition:background .2s,transform .2s var(--spring);display:inline-flex;align-items:center;gap:6px;}.btn-primary:hover{background:var(--blue-d);transform:translateY(-2px);}
+.btn-white{background:#fff;color:var(--blue);padding:12px 24px;border-radius:24px;font-size:13px;font-weight:700;text-decoration:none;transition:all .2s var(--spring);display:inline-flex;align-items:center;}.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.12);}
+.btn-ghost-white{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);padding:11px 22px;border-radius:24px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s var(--spring);display:inline-flex;align-items:center;}.btn-ghost-white:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5);}
+.cta-block{background:linear-gradient(135deg,var(--dark),var(--dark-2));border-radius:22px;padding:48px;position:relative;overflow:hidden;box-shadow:0 12px 48px rgba(6,12,30,.22);}.cta-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 0%,rgba(0,87,255,.25) 0%,transparent 55%);}
+.cta-block-inner{position:relative;z-index:1;max-width:520px;}.cta-tag{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue-l);font-weight:600;margin-bottom:8px;}.cta-h{font-weight:700;font-size:clamp(22px,2.8vw,34px);letter-spacing:-0.8px;line-height:1.12;color:#fff;margin-bottom:10px;}.cta-h em{font-style:italic;color:var(--blue-xl);}.cta-sub{font-size:14px;color:rgba(255,255,255,.62);margin-bottom:24px;line-height:1.65;}.cta-btns{display:flex;gap:10px;flex-wrap:wrap;}
+footer{background:var(--dark);padding:60px 48px 28px;border-top:1px solid rgba(255,255,255,.04);}.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07);}
+.footer-logo-wrap{display:flex;align-items:center;gap:8px;text-decoration:none;margin-bottom:10px;}.footer-logo-mark{width:26px;height:26px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;}.footer-logo-mark svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}.footer-logo-text{font-family:var(--font);font-weight:700;font-size:15px;letter-spacing:-.5px;}.footer-logo-n{color:var(--blue-l);}.footer-logo-vora{color:#fff;}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65;max-width:220px;margin-top:4px;}.footer-col h4{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;}.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;margin-bottom:10px;transition:color .2s,padding-left .2s;}.footer-col a:hover{color:#fff;padding-left:4px;}
+.footer-bottom{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding-top:24px;font-size:11px;color:rgba(255,255,255,.38);}
+@media(max-width:1024px){.footer-inner{grid-template-columns:1fr 1fr;gap:32px;}}@media(max-width:700px){footer{padding:48px 24px 24px;}.footer-inner{grid-template-columns:1fr;gap:24px;}.footer-bottom{flex-direction:column;gap:8px;text-align:center;}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease);}.reveal.visible{opacity:1;transform:none;}.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .6s var(--ease),transform .6s var(--ease);}.reveal-l.visible{opacity:1;transform:none;}.reveal-r{opacity:0;transform:translateX(24px);transition:opacity .6s var(--ease),transform .6s var(--ease);}.reveal-r.visible{opacity:1;transform:none;}
+@media(max-width:760px){section,.page-hero,footer{padding-left:24px;padding-right:24px;}.page-hero{padding-top:96px;}}
+</style>
+<style>
+.blog-header{max-width:760px;}
+.blog-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;opacity:0;transform:translateY(10px);animation:fadeUp .5s .45s var(--ease) forwards;}
+@keyframes fadeUp{to{opacity:1;transform:none;}}
+.blog-meta-item{font-size:12px;color:rgba(8,8,15,.5);font-weight:500;}
+.blog-meta-dot{width:3px;height:3px;border-radius:50%;background:rgba(8,8,15,.25);}
+.blog-cat{background:rgba(0,87,255,.1);color:var(--blue);font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.3px;}
+.article{max-width:760px;margin:0 auto;}
+.article h2{font-weight:700;font-size:clamp(20px,2.5vw,26px);letter-spacing:-.8px;line-height:1.15;color:var(--black);margin:32px 0 12px;}
+.article h3{font-weight:600;font-size:16px;letter-spacing:-.2px;color:var(--black);margin:24px 0 8px;}
+.article p{font-size:15px;color:rgba(8,8,15,.68);line-height:1.82;margin-bottom:16px;}
+.article strong{color:var(--black);font-weight:600;}
+.article ul,.article ol{padding-left:20px;margin-bottom:16px;}
+.article li{font-size:15px;color:rgba(8,8,15,.68);line-height:1.82;margin-bottom:6px;}
+.article-cta{background:linear-gradient(135deg,var(--dark),var(--dark-2));border-radius:18px;padding:36px;margin-top:48px;position:relative;overflow:hidden;}
+.article-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 0%,rgba(0,87,255,.25) 0%,transparent 55%);}
+.article-cta-inner{position:relative;z-index:1;}
+.blog-back{font-size:13px;color:var(--text-s);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-bottom:24px;transition:color .2s;opacity:0;transform:translateY(10px);animation:fadeUp .5s .15s var(--ease) forwards;}
+.blog-back:hover{color:var(--blue);}
+
+#page-trans{position:fixed;inset:0;background:var(--bg);z-index:99999;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+#page-trans.out{opacity:1;pointer-events:all;}
+body{animation:pageIn .4s ease both;}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+<div id="page-trans"></div>
+
+<div id="sp"></div>
+<div class="menu-ov" id="menuOv">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="nuvora-services-v3.html" onclick="closeMenu()">Services</a>
+  <a href="nuvora-portfolio-v3.html" onclick="closeMenu()">Portfolio</a>
+  <a href="nuvora-about-v3.html" onclick="closeMenu()">About</a>
+  <a href="nuvora-contact-v3.html" onclick="closeMenu()">Contact</a>
+  <span class="menu-sub">info@nuvoraweb.co.za</span>
+</div>
+<div class="nav-wrap">
+  <nav>
+    <a href="index.html" class="logo">
+      <div class="logo-mark"><svg viewBox="0 0 14 14"><path d="M2 11V3l5 8V3"/><path d="M9 3v8"/></svg></div>
+      <span class="logo-text"><span class="logo-n">nu</span><span class="logo-vora">vora</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="nuvora-services-v3.html">Services</a>
+      <a href="nuvora-portfolio-v3.html">Portfolio</a>
+      <a href="nuvora-about-v3.html">About</a>
+      <a href="nuvora-contact-v3.html">Contact</a>
     </div>
-    <h1 style="font-weight:700;font-size:clamp(26px,4vw,40px);letter-spacing:-1.5px;line-height:1.1;color:var(--black);margin-bottom:16px;">How to turn your website into a 24/7 lead generation machine</h1>
-    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
-      <span style="font-size:11px;color:var(--text-s);">May 2026</span>
-      <span style="font-size:11px;background:rgba(26,155,114,.08);color:var(--teal);border:1px solid rgba(26,155,114,.14);border-radius:20px;padding:2px 10px;font-weight:500;">Lead Generation</span>
-      <span style="font-size:11px;color:var(--text-s);">5 min read</span>
+    <div class="nav-right">
+      <a href="https://calendly.com/nuvoramain/30min" target="_blank" class="nav-cta">Book a call</a>
+      <button class="burger" id="burger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</div>
+<div class="page-hero" style="padding-bottom:48px;">
+  <div class="page-hero-blob"></div>
+  <div class="page-hero-inner">
+    <a href="index.html" class="blog-back">&larr; Back to home</a>
+    <div class="page-tag">Lead Generation</div>
+    <h1 class="page-h" style="max-width:760px;">How to turn your website into a<br><em>24/7 lead generation machine</em></h1>
+    <div class="blog-meta">
+      <span class="blog-cat">Lead Generation</span>
+      <span class="blog-meta-dot"></span>
+      <span class="blog-meta-item">May 2026</span>
+      <span class="blog-meta-dot"></span>
+      <span class="blog-meta-item">6 min read</span>
     </div>
   </div>
 </div>
-<div style="max-width:720px;margin:0 auto;padding:40px 32px 80px;">
-  <p style="font-size:16px;color:var(--text-m);line-height:1.8;margin-bottom:24px;font-weight:400;">Most websites are expensive brochures. They look good, they describe what the business does, and then they wait for someone to make contact. The problem is that most visitors will not. Here is how to change that.</p>
-  
-    <h2 style="font-weight:700;font-size:clamp(18px,2.2vw,24px);letter-spacing:-1px;color:var(--black);margin:32px 0 12px;">The passive website problem</h2>
-    <p style="font-size:15px;color:var(--text-m);line-height:1.8;margin-bottom:16px;">A traditional website is passive — it sits and waits for a visitor to take action. But buying behaviour has changed. Consumers research across multiple sources, compare options, and often make decisions without ever picking up the phone. If your website does not capture their interest in the moment they are on it, that lead is gone.</p>
-    
-    <h2 style="font-weight:700;font-size:clamp(18px,2.2vw,24px);letter-spacing:-1px;color:var(--black);margin:32px 0 12px;">The lead capture system</h2>
-    <p style="font-size:15px;color:var(--text-m);line-height:1.8;margin-bottom:16px;">A proper lead generation system has three components: a way to capture attention (an offer, a quiz, a free quote form), a way to collect contact details with minimal friction, and an automated follow-up sequence that nurtures the lead until they are ready to buy. None of this requires a human being to be available — it runs automatically.</p>
-    
-    <h2 style="font-weight:700;font-size:clamp(18px,2.2vw,24px);letter-spacing:-1px;color:var(--black);margin:32px 0 12px;">Exit intent and scroll triggers</h2>
-    <p style="font-size:15px;color:var(--text-m);line-height:1.8;margin-bottom:16px;">Exit-intent technology detects when a visitor is about to leave your site and shows them a targeted offer at that exact moment. Studies show this can recover 10-15% of leaving visitors. Combined with scroll-based triggers that activate after a visitor has read 60% of your page, you can capture leads that would otherwise disappear without a trace.</p>
-    
-    <h2 style="font-weight:700;font-size:clamp(18px,2.2vw,24px);letter-spacing:-1px;color:var(--black);margin:32px 0 12px;">The follow-up sequence</h2>
-    <p style="font-size:15px;color:var(--text-m);line-height:1.8;margin-bottom:16px;">The difference between a lead and a client is usually timing and persistence. Most businesses follow up once and then give up. An automated email sequence that sends 5-7 relevant, value-adding emails over 2-3 weeks will convert significantly more leads than a single follow-up. The key is that it runs automatically — you write it once and it works forever.</p>
-    
-  <div style="background:linear-gradient(135deg,var(--forest),#0E4035);border-radius:18px;padding:28px;margin-top:40px;position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 0%,rgba(38,198,137,.2) 0%,transparent 55%);"></div>
-    <div style="position:relative;z-index:1;">
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);font-weight:600;margin-bottom:8px;">Ready to get started?</div>
-      <h3 style="font-weight:700;font-size:20px;letter-spacing:-1px;color:#fff;margin-bottom:8px;">Let Nuvora build your digital growth system.</h3>
-      <p style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:18px;">Free 30-minute discovery call. No pitch, no pressure.</p>
-      <a href="nuvora-contact-v3.html" style="display:inline-block;background:#fff;color:var(--forest);padding:10px 20px;border-radius:22px;font-size:12px;font-weight:700;text-decoration:none;">Get a free quote</a>
+<section>
+  <div class="section-inner">
+    <div class="article reveal">
+<p>Most websites are digital brochures. They look decent, they explain what a business does, and then they wait. They do not capture leads. They do not follow up. They do not book appointments. They just sit there.</p>
+    <p>Here is how to build one that actually works while you sleep.</p>
+    <h2>The three components of a lead-generating site</h2>
+    <p>Every website that consistently generates leads has three things: a <strong>clear offer</strong>, a <strong>frictionless capture mechanism</strong>, and an <strong>automated follow-up system</strong>. Most sites have the first. Very few have all three.</p>
+    <h2>Step 1: Make the offer unmissable</h2>
+    <p>Your homepage has approximately five seconds to communicate what you do, who it is for, and why someone should care. This is not about clever copy — it is about clarity. "We build AI-powered websites for SA businesses" converts better than "Digital solutions for the modern enterprise."</p>
+    <h2>Step 2: Reduce friction to zero</h2>
+    <p>Every form field is a reason not to submit. Every click is a drop-off point. The fastest-converting sites have one or two fields (name and email), a clear value exchange ("get a free quote"), and a button that does exactly what it says.</p>
+    <h2>Step 3: Automate the follow-up</h2>
+    <p>This is where most businesses lose. A lead submits a form at 11pm on a Sunday. If they do not hear back until Monday afternoon, they have already contacted two competitors. An automated email sequence that fires within minutes — acknowledges, builds trust, and asks a qualifying question — converts dramatically better than a manual reply 16 hours later.</p>
+    <h2>The chatbot advantage</h2>
+    <p>An AI chatbot on your site can qualify leads in real time, answer common questions, and even book discovery calls — 24 hours a day. For businesses in competitive markets, this is no longer a nice-to-have. <strong>It is the difference between capturing a lead and losing it to someone who has one.</strong></p>
+      <div class="article-cta">
+        <div class="article-cta-inner">
+          <div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue-l);font-weight:600;margin-bottom:8px;">Ready to grow?</div>
+          <div style="font-weight:800;font-size:clamp(20px,2.8vw,28px);letter-spacing:-.5px;letter-spacing:-1px;color:#fff;margin-bottom:10px;">Let us build your <em style="font-style:italic;color:var(--blue-xl);">digital engine.</em></div>
+          <p style="font-size:14px;color:rgba(255,255,255,.6);margin-bottom:22px;line-height:1.65;">Book a free 30-minute call and we will map out exactly what your business needs.</p>
+          <a href="https://calendly.com/nuvoramain/30min" target="_blank" class="btn-white">Book a free call</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<footer><div class="footer-inner"><div class="footer-bottom"><span>© 2025 Nuvora. All rights reserved.</span><span>info@nuvoraweb.co.za</span></div></div></footer>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="footer-logo-wrap"><div class="footer-logo-mark"><svg viewBox="0 0 14 14"><path d="M2 11V3l5 8V3"/><path d="M9 3v8"/></svg></div><span class="footer-logo-text"><span class="footer-logo-n">nu</span><span class="footer-logo-vora">vora</span></span></a>
+      <p>AI-powered websites and marketing automation for South African businesses.</p>
+    </div>
+    <div class="footer-col"><h4>Services</h4><a href="nuvora-services-v3.html">Website Design</a><a href="nuvora-services-v3.html">Lead Generation</a><a href="nuvora-services-v3.html">Email Automation</a><a href="nuvora-services-v3.html">Ads Management</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="nuvora-about-v3.html">About</a><a href="nuvora-portfolio-v3.html">Portfolio</a><a href="nuvora-contact-v3.html">Contact</a></div>
+    <div class="footer-col"><h4>Legal</h4><a href="terms.html">Terms</a><a href="privacy.html">Privacy Policy</a><a href="refund-policy.html">Refund Policy</a></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 Nuvora &middot; Pretoria, South Africa</span><span>info@nuvoraweb.co.za</span></div>
+</footer>
 <script>
-let open=false;
-function toggleMenu(){open=!open;document.getElementById('burger').classList.toggle('open',open);document.getElementById('menuOv').classList.toggle('open',open);document.body.style.overflow=open?'hidden':'';}
-function closeMenu(){open=false;document.getElementById('burger').classList.remove('open');document.getElementById('menuOv').classList.remove('open');document.body.style.overflow='';}
+window.addEventListener('scroll',()=>{document.getElementById('sp').style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+let menuOpen=false;
+function toggleMenu(){menuOpen=!menuOpen;document.getElementById('burger').classList.toggle('open',menuOpen);document.getElementById('menuOv').classList.toggle('open',menuOpen);document.body.style.overflow=menuOpen?'hidden':'';}
+function closeMenu(){menuOpen=false;document.getElementById('burger').classList.remove('open');document.getElementById('menuOv').classList.remove('open');document.body.style.overflow='';}
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){const d=parseInt(e.target.dataset.delay||i*60);setTimeout(()=>e.target.classList.add('visible'),d);obs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
 </script>
-</body></html>
+
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(!href||href.startsWith('http')||href.startsWith('#')||href.startsWith('mailto')) return;
+    if(!href.endsWith('.html')&&!href.endsWith('/')) return;
+    a.addEventListener('click',e=>{
+      e.preventDefault();
+      const t=document.getElementById('page-trans');
+      if(t){t.classList.add('out');setTimeout(()=>{window.location.href=href;},320);}
+      else{window.location.href=href;}
+    });
+  });
+});
+</body>
+</html>
